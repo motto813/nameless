@@ -1,3 +1,5 @@
 class Company < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :positions
+
+  validates :name, presence: true
 end
