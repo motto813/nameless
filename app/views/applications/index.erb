@@ -1,0 +1,11 @@
+<h3>List of current applications</h3>
+
+<div id="application_list">
+  <% @applications.each do |application| %>
+    <ul>
+      <li>Applicant ID: <%= application.resume.applicant_id %></li>
+      <li>Position Company: <%= application.position.company.name %></li>
+      <li>Position Title: <%= application.position.title %></li>
+    </ul>
+  <% end %>
+</div>
