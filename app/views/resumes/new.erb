@@ -1,0 +1,28 @@
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
+<p class="register_prompt"><b>Applicants:</b> Upload your resume below.</p>
+
+<div id="unwanted_items">
+  <p>Do NOT include the following items in your resume:</p>
+  <ul>
+    <li>Your name</li>
+    <li>Your birthday</li>
+    <li>Where you grew up</li>
+    <li>A picture of yourself</li>
+  </ul>
+</div>
+
+<div class="register">
+  <form action="/resumes" method="post">
+    <div>
+      <label for="resume_upload">Upload here: </label>
+      <input id="resume_file_name" name="resume[file_name]" type="text">
+    </div>
+    <div>
+      <input name="commit" type="submit" value="Submit Resume">
+    </div>
+  </form>
+</div>

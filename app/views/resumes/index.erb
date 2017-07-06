@@ -1,0 +1,11 @@
+<h3>List of current resumes</h3>
+
+<div id="resume_list">
+  <% @resumes.each do |resume| %>
+    <ul>
+      <li>File Name: <%= resume.file_name %></li>
+      <li>File Path: <%= resume.file_path %></li>
+      <li>Applicant Name: <%= "#{resume.applicant.first_name} #{resume.applicant.last_name}" %></li>
+    </ul>
+  <% end %>
+</div>
