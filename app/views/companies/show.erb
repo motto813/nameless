@@ -3,5 +3,6 @@
 <div class="company_list">
   <ul>
     <li><%= @company.name %></li>
+    <li><%= erb :"companies/_delete", layout: false, locals: { company: @company } %></li>
   </ul>
 </div>

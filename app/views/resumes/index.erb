@@ -6,6 +6,7 @@
       <li>File Name: <%= resume.file_name %></li>
       <li>File Path: <%= resume.file_path %></li>
       <li>Applicant Name: <%= "#{resume.applicant.first_name} #{resume.applicant.last_name}" %></li>
+      <li><%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %></li>
     </ul>
   <% end %>
 </div>
