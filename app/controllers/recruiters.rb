@@ -14,6 +14,8 @@ post '/recruiters' do
   if @recruiter.save
     redirect '/recruiters'
   else
+    @errors = @recruiter.errors.full_messages
+    p @errors
     erb :"recruiters/new"
   end
 end

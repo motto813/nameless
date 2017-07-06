@@ -1,9 +1,17 @@
-<h1>Hiring homepage</h1>
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
+<h1>Hiring Homepage</h1>
 
 <p class="login_prompt">Recruiters: Login with your email and password below.</p>
+<p class="register_prompt">
+  New recruiters: Click here to <a href="/recruiters/new">register</a>
+</p>
 
 <div class="login">
-  <form action="/login" method="post">
+  <form action="/looking/login" method="post">
     <div>
       <label for="recruiter_email">Email</label>
       <input id="recruiter_email" name="recruiter[email]" type="text">
@@ -11,6 +19,9 @@
     <div>
       <label for="recruiter_password">Password</label>
       <input id="recruiter_password" name="recruiter[password]" type="text">
+    </div>
+    <div>
+      <input name="commit" type="submit" value="Login">
     </div>
   </form>
 </div>

@@ -5,6 +5,9 @@ get '/positions' do
 end
 
 get '/positions/new' do
+  @companies = Company.all
+  @recruiters = Recruiter.all
+
   erb :"positions/new"
 end
 
@@ -14,6 +17,10 @@ post '/positions' do
   if @position.save
     redirect '/positions'
   else
+    @companies = Company.all
+    @recruiters = Recruiter.all
+
+    @errors = @position.errors.full_messages
     erb :"positions/new"
   end
 end

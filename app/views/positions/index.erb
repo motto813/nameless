@@ -1,0 +1,10 @@
+<h3>List of current positions</h3>
+
+<div id="position_list">
+  <% @positions.each do |position| %>
+    <ul>
+      <li>Title: <%= position.title %></li>
+      <li>Description: <%= position.description %></li>
+    </ul>
+  <% end %>
+</div>

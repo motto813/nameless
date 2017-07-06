@@ -1,0 +1,10 @@
+<h3>List of current recruiters</h3>
+
+<div id="recruiter_list">
+  <% @recruiters.each do |recruiter| %>
+    <ul>
+      <li><%= "#{recruiter.first_name} #{recruiter.last_name}" %></li>
+      <li>Email: <%= recruiter.email %></li>
+    </ul>
+  <% end %>
+</div>
