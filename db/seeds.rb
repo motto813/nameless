@@ -31,5 +31,5 @@ number_of_resumes_wanted = 4
 new_resumes_needed = number_of_resumes_wanted - Resume.count
 
 new_resumes_needed.times do
-  resume = { file_location}
+  resume = { file_name: Faker::StarWars.planet }
 end

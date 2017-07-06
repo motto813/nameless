@@ -5,6 +5,7 @@ class Position < ActiveRecord::Base
   has_many :applications
 
   validates :title, presence: true
+  validates :description, presence: true
   validates :company_id, presence: true
   validates :recruiter_id, presence: true
 end
