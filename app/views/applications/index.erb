@@ -6,6 +6,7 @@
       <li>Applicant ID: <%= application.resume.applicant_id %></li>
       <li>Position Company: <%= application.position.company.name %></li>
       <li>Position Title: <%= application.position.title %></li>
+      <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
     </ul>
   <% end %>
 </div>
