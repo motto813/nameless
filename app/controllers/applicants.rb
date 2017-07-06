@@ -5,6 +5,8 @@ get '/applicants' do
 end
 
 get '/applicants/new' do
+  @applicant = Applicant.new
+
   erb :"applicants/new"
 end
 

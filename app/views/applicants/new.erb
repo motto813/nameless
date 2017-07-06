@@ -7,18 +7,7 @@
 
 <div class="register">
   <form action="/applicants" method="post">
-    <div>
-      <label for="applicant_first_name">First Name</label>
-      <input id="applicant_first_name" name="applicant[first_name]" type="text">
-    </div>
-    <div>
-      <label for="applicant_last_name">Last Name</label>
-      <input id="applicant_last_name" name="applicant[last_name]" type="text">
-    </div>
-    <div>
-      <label for="applicant_email">Email</label>
-      <input id="applicant_email" name="applicant[email]" type="text">
-    </div>
+    <%= erb :"applicants/_form_fields", layout: false %>
     <div>
       <label for="applicant_password">Password</label>
       <input id="applicant_password" name="applicant[password]" type="text">

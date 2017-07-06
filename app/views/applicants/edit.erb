@@ -1,0 +1,16 @@
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
+<p class="register_prompt">Applicants: Edit your profile below.</p>
+
+<div class="register">
+  <form action="/applicants/<%= @applicant.id %>" method="post">
+    <input name="_method" type="hidden" value="put">
+    <%= erb :"applicants/_form_fields", layout: false %>
+    <div>
+      <input name="commit" type="submit" value="Update Profile">
+    </div>
+  </form>
+</div>
