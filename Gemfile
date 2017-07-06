@@ -1,27 +1,26 @@
 source 'https://rubygems.org'
+ruby '~> 2.2', '>= 2.2.2'
 
 # PostgreSQL driver
-gem 'pg'
+gem 'pg', '~> 0.18'
 
 # Sinatra driver
-gem 'sinatra', '~> 1.0'
+gem 'sinatra', '~> 1.4.8'
 gem 'sinatra-contrib'
 
-gem 'activesupport', '~>4.2.0'
-gem 'activerecord', '~>4.2.0'
+# Use Thin for our web server
+gem 'thin'
 
-gem 'rake'
+gem 'activerecord', '~> 5.0'
+gem 'activesupport', '~> 5.0'
 
-gem 'shotgun', '~>0.9.1'
+gem 'rake', '~> 12.0.0'
+
+gem 'shotgun'
+
+gem 'bcrypt'
 
 group :test do
-  gem 'shoulda-matchers'
-  gem 'rack-test'
-  gem 'rspec', '~>3.0'
-  gem 'capybara'
-end
-
-group :test, :development do
-  gem 'factory_girl'
-  gem 'faker'
+  gem 'faker', '~> 1.7.3'
+  gem 'rspec', '~> 3.5'
 end
