@@ -1,0 +1,7 @@
+- If you delete yourself, either as a recruiter or an applicant, what happens to the dependent database entries?
+    * Does it make sense to delete them right away?
+    * Currently it crashes the program because the ActiveRecord associations are broken
+- Authorizations... authorizations everywhere
+- And authentications! (for applicants and recruiters)
+- File upload capabilities
+- Ability to scan a document for a name?  Would have to parse through the .PDF and search for common first/last names
