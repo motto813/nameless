@@ -1,0 +1,26 @@
+<div>
+  <label for="position_title">Title: </label>
+  <input id="position_title" name="position[title]" type="text" value="<%= @position.title %>">
+</div>
+<div>
+  <label for="position_description">Description: </label>
+  <input id="position_description" name="position[description]" type="text" value="<%= @position.description %>">
+</div>
+<div>
+  <label for="position_company">Company: </label>
+  <select required name="position[company_id]">
+    <option value="">Select from list</option>
+    <% @companies.each do |company| %>
+    <option value="<%= company.id %>"><%= company.name %></option>
+    <% end %>
+  </select>
+</div>
+<div>
+  <label for="position_recruiter">Recruiter: </label>
+  <select required name="position[recruiter_id]">
+    <option value="">Select from list</option>
+    <% @recruiters.each do |recruiter| %>
+    <option value="<%= recruiter.id %>"><%= recruiter.first_name %></option>
+    <% end %>
+  </select>
+</div>

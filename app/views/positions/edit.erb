@@ -1,0 +1,15 @@
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
+<p class="register_prompt"><b>Recruiters:</b> Edit this position by changing any of the values in the field below.</p>
+
+<div class="register">
+  <form action="/positions/<%= @position.id %>" method="post">
+    <%= erb :"positions/_form_fields", layout: false %>
+    <div>
+      <input name="commit" type="submit" value="Update Position">
+    </div>
+  </form>
+</div>

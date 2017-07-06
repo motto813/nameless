@@ -5,6 +5,8 @@ get '/companies' do
 end
 
 get '/companies/new' do
+  @company = Company.new
+
   erb :"companies/new"
 end
 

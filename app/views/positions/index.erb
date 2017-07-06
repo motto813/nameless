@@ -2,9 +2,10 @@
 
 <div id="position_list">
   <% @positions.each do |position| %>
-    <ul>
-      <li>Title: <%= position.title %></li>
-      <li>Description: <%= position.description %></li>
-    </ul>
+  <ul>
+    <li>Company: <%= position.company.name %></li>
+    <li>Title: <%= position.title %></li>
+    <li>Description: <%= position.description %></li>
+  </ul>
   <% end %>
 </div>

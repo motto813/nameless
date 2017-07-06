@@ -5,6 +5,8 @@ get '/positions' do
 end
 
 get '/positions/new' do
+  @position = Position.new
+
   @companies = Company.all
   @recruiters = Recruiter.all
 
@@ -33,6 +35,9 @@ end
 
 get '/positions/:id/edit' do
   @position = Position.find(params[:id])
+
+  @companies = Company.all
+  @recruiters = Recruiter.all
 
   erb :"positions/edit"
 end
