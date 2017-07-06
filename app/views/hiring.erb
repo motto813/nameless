@@ -11,7 +11,7 @@
 </p>
 
 <div class="login">
-  <form action="/looking/login" method="post">
+  <form action="/hiring/login" method="post">
     <div>
       <label for="recruiter_email">Email</label>
       <input id="recruiter_email" name="recruiter[email]" type="text">
@@ -25,3 +25,5 @@
     </div>
   </form>
 </div>
+
+<%= erb :_login_status, layout: false %>

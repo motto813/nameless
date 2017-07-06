@@ -26,16 +26,21 @@ get '/hiring' do
 end
 
 post '/hiring/login' do
-  # see user registration DBC challenge
+  recruiter = Recruiter.authenticate(params[:recruiter][:email], params[:recruiter][:password])
+  puts params
+  unless recruiter.nil?
+    session[:user] = recruiter
+    session[:message] = "Logged in as #{recruiter.first_name} #{recruiter.last_name}."
+    redirect '/hiring'
+  else
+    @invalid = "Error: Not a valid email - password combo."
+    erb :hiring
+  end
 end
 
 get '/logout' do
   session.delete(:user)
   session.delete(:message)
-
-  session.each_entry do |entry|
-    puts entry
-  end
 
   erb :index
 end

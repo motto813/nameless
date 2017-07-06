@@ -5,6 +5,8 @@
 - And authentications! (for applicants and recruiters)
 - File upload capabilities
 - Ability to scan a document for a name?  Would have to parse through the .PDF and search for common first/last names
+- If you go to the hiring page from the looking page already logged in, should it automatically logout?
+    * If so, should it display a message saying  as such?
 
 
 - Refactor Stuff
