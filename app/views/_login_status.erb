@@ -1,0 +1,12 @@
+<div class="login_status">
+  <p>
+    <%= @invalid unless @invalid.nil? %>
+  </p>
+  <p>
+    <% if session[:user] %>
+      <%= "#{session[:message]} " %><a href='/logout'>Logout</a>
+    <% else %>
+      Not logged in.
+    <% end %>
+  </p>
+</div>

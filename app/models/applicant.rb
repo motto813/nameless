@@ -14,4 +14,13 @@ class Applicant < ActiveRecord::Base
   def encrypt_password
     self.password = BCrypt::Password.create(self.password)
   end
+
+  def self.authenticate(email, password)
+    applicant = self.find_by(email: email)
+    unless applicant.nil?
+      db_password = BCrypt::Password.new(applicant.password)
+      return applicant if db_password == password
+    end
+    return nil
+  end
 end
