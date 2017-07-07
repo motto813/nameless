@@ -6,7 +6,7 @@
     <li>Applicant ID: <%= application.resume.applicant_id %></li>
     <li>Position Company: <%= application.position.company.name %></li>
     <li>Position Title: <%= application.position.title %></li>
-    <% if application.resume.applicant == session[:user] %>
+    <% if application.is_created_by_applicant?(session[:user]) %>
       <li>This is your application.</li>
       <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
     <% end %>
