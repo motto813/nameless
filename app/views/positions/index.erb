@@ -6,7 +6,18 @@
     <li>Company: <%= position.company.name %></li>
     <li>Title: <%= position.title %></li>
     <li>Description: <%= position.description %></li>
-    <li><%= erb :"positions/_delete", layout: false, locals: { position: position } %></li>
+    <% if session[:user].instance_of? Applicant %>
+      <% position.applications.each do |application| %>
+        <% if application.resume.applicant == session[:user] %>
+          <li>You have applied for this position</li>
+        <% end %>
+      <% end %>
+      <li><%= erb :"applications/_new", layout: false, locals: { position: position } %></li>
+    <% end %>
+    <% if position.recruiter == session[:user] %>
+      <li><%= erb :"positions/_delete", layout: false, locals: { position: position } %></li>
+    <% end %>
+    </ul>
   </ul>
   <% end %>
 </div>

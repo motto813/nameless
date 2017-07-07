@@ -1,5 +1,5 @@
 get '/positions' do
-  @positions = Position.all
+  @positions = Position.all.order(:id)
 
   erb :"positions/index"
 end
