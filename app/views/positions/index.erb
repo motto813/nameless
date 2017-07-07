@@ -14,6 +14,7 @@
       <% end %>
     <% end %>
     <% if position.was_created_by_recruiter?(session[:user]) %>
+      <li>You listed this position.</li>
       <li><%= erb :"positions/_delete", layout: false, locals: { position: position } %></li>
     <% end %>
     </ul>

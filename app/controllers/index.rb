@@ -1,7 +1,7 @@
 enable :sessions
 
 get '/' do
-  erb :index
+  erb :index, layout: false
 end
 
 get '/looking' do
