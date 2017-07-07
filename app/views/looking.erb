@@ -13,11 +13,11 @@
 <div class="login">
   <form action="/looking/login" method="post">
     <div>
-      <label for="applicant_email">Email</label>
+      <label for="applicant_email">Email: </label>
       <input id="applicant_email" name="applicant[email]" type="text">
     </div>
     <div>
-      <label for="applicant_password">Password</label>
+      <label for="applicant_password">Password: </label>
       <input id="applicant_password" name="applicant[password]" type="text">
     </div>
     <div>
@@ -26,13 +26,11 @@
   </form>
 </div>
 
-<div class="looking_links">
+<div class="links">
   <p>
-    Upload a <a href="/resumes/new">resume</a>
+    <a href="/resumes/new">Upload a Resume</a>
   </p>
-  <p>
-    Browse available <a href="/positions">positions</a>
-  </p>
+  <%= erb :_nav_links %>
 </div>
 
 <%= erb :_login_status, layout: false %>

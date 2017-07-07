@@ -15,12 +15,3 @@
     <% end %>
   </select>
 </div>
-<div>
-  <label for="position_recruiter">Recruiter: </label>
-  <select required name="position[recruiter_id]">
-    <option value="">Select from list</option>
-    <% @recruiters.each do |recruiter| %>
-    <option value="<%= recruiter.id %>"><%= recruiter.first_name %></option>
-    <% end %>
-  </select>
-</div>

@@ -15,6 +15,7 @@ end
 
 post '/positions' do
   @position = Position.new(params[:position])
+  @position.recruiter = session[:user]
 
   if @position.save
     redirect '/positions'
