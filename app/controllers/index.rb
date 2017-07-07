@@ -42,5 +42,5 @@ get '/logout' do
   session.delete(:user)
   session.delete(:message)
 
-  erb :index
+  erb :index, layout: false
 end

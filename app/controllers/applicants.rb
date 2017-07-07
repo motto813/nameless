@@ -14,8 +14,10 @@ post '/applicants' do
   @applicant = Applicant.new(params[:applicant])
 
   if @applicant.save
-    redirect '/applicants'
+    redirect '/looking'
   else
+    @errors = applicant.errors.full_messages
+
     erb :"applicants/new"
   end
 end
