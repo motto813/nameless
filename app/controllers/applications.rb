@@ -5,6 +5,11 @@ get '/applications' do
 end
 
 get '/applications/new' do
+  @position = Position.find(params[:position_id])
+
+  @applicant = Applicant.find(params[:applicant_id])
+  @resumes = @applicant.resumes
+
   erb :"applications/new"
 end
 

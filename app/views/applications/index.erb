@@ -8,6 +8,7 @@
     <li>Position Title: <%= application.position.title %></li>
     <% if application.is_created_by_applicant?(session[:user]) %>
       <li>This is your application.</li>
+      <li>Submitted resume: <%= application.resume.file_name %></li>
       <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
     <% end %>
   </ul>
