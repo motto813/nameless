@@ -5,26 +5,30 @@
 
 <h1>Hiring Homepage</h1>
 
-<p class="login_prompt">Recruiters: Login with your email and password below.</p>
-<p class="register_prompt">
-  New recruiters: Click here to <a href="/recruiters/new">register</a>
-</p>
+<% unless session[:user].instance_of? Recruiter %>
 
-<div class="login">
-  <form action="/hiring/login" method="post">
-    <div>
-      <label for="recruiter_email">Email</label>
-      <input id="recruiter_email" name="recruiter[email]" type="text">
-    </div>
-    <div>
-      <label for="recruiter_password">Password</label>
-      <input id="recruiter_password" name="recruiter[password]" type="password">
-    </div>
-    <div>
-      <input name="commit" type="submit" value="Login">
-    </div>
-  </form>
-</div>
+  <p class="login_prompt">Recruiters: Login with your email and password below.</p>
+  <p class="register_prompt">
+    New recruiters: Click here to <a href="/recruiters/new">register</a>
+  </p>
+
+  <div class="login">
+    <form action="/hiring/login" method="post">
+      <div>
+        <label for="recruiter_email">Email</label>
+        <input id="recruiter_email" name="recruiter[email]" type="text">
+      </div>
+      <div>
+        <label for="recruiter_password">Password</label>
+        <input id="recruiter_password" name="recruiter[password]" type="password">
+      </div>
+      <div>
+        <input name="commit" type="submit" value="Login">
+      </div>
+    </form>
+  </div>
+
+<% end %>
 
 <div class="links">
   <p>

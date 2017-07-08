@@ -5,29 +5,51 @@
 
 <h1>Looking Homepage</h1>
 
-<p class="login_prompt">Returning applicants: Login with your email and password below.</p>
-<p class="register_prompt">
-  New applicants: Click here to <a href="/applicants/new">register</a>
-</p>
+<% unless session[:user].instance_of? Applicant %>
 
-<div class="login">
-  <form action="/looking/login" method="post">
-    <div>
-      <label for="applicant_email">Email: </label>
-      <input id="applicant_email" name="applicant[email]" type="text">
-    </div>
-    <div>
-      <label for="applicant_password">Password: </label>
-      <input id="applicant_password" name="applicant[password]" type="password">
-    </div>
-    <div>
-      <input name="commit" type="submit" value="Login">
-    </div>
-  </form>
-</div>
-
-<div class="links">
-  <p>
-    <a href="/resumes/new">Upload a Resume</a>
+  <p class="login_prompt">Returning applicants: Login with your email and password below.</p>
+  <p class="register_prompt">
+    New applicants: Click here to <a href="/applicants/new">register</a>
   </p>
-</div>
+
+  <div class="login">
+    <form action="/looking/login" method="post">
+      <div>
+        <label for="applicant_email">Email: </label>
+        <input id="applicant_email" name="applicant[email]" type="text">
+      </div>
+      <div>
+        <label for="applicant_password">Password: </label>
+        <input id="applicant_password" name="applicant[password]" type="password">
+      </div>
+      <div>
+        <input name="commit" type="submit" value="Login">
+      </div>
+    </form>
+  </div>
+
+<% else %>
+
+  <% if Resume.where(applicant: session[:user]).count == 0 %>
+
+    <p>
+      You don't have any resumes uploaded to Nameless.
+    </p>
+
+  <% else %>
+
+    <div class="links">
+      <p>
+        <a href="/applications?applicant_id=<%= session[:user].id %>">View your submitted applications</a>
+      </p>
+    </div>
+
+  <% end %>
+
+  <div class="links">
+    <p>
+      <a href="/resumes/new">Upload a Resume</a>
+    </p>
+  </div>
+
+<% end %>
