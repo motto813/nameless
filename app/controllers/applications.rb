@@ -1,5 +1,9 @@
 get '/applications' do
-  @applications = Application.all
+  if params[:applicant_id].to_i == session[:user].id
+    @applications = Application.submitted_by_applicant(params[:applicant_id])
+  else
+    @applications = Application.all
+  end
 
   erb :"applications/index"
 end
@@ -17,7 +21,7 @@ post '/applications' do
   @application = Application.new(params[:application])
 
   if @application.save
-    redirect '/applications'
+    redirect "/applications?applicant_id=#{@application.resume.applicant_id}"
   else
     erb :"applications/new"
   end

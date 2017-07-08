@@ -8,4 +8,8 @@ class Application < ActiveRecord::Base
   def is_created_by_applicant?(applicant)
     self.resume.applicant == applicant
   end
+
+  def self.submitted_by_applicant(applicant_id)
+    self.where(resume: Resume.where(applicant_id: applicant_id))
+  end
 end
