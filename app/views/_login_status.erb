@@ -6,7 +6,7 @@
     <% if session[:user] %>
       <%= "#{session[:message]} " %><a href='/logout'>Logout</a>
     <% else %>
-      Not logged in.
+      Not logged in. <a href="/looking">Applicants</a> <a href="/hiring">Recruiters</a>
     <% end %>
   </p>
 </div>
