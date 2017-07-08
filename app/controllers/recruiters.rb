@@ -12,10 +12,10 @@ post '/recruiters' do
   @recruiter = Recruiter.new(params[:recruiter])
 
   if @recruiter.save
-    redirect '/recruiters'
+    redirect '/hiring'
   else
     @errors = @recruiter.errors.full_messages
-    p @errors
+
     erb :"recruiters/new"
   end
 end

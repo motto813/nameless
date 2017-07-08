@@ -14,7 +14,7 @@ post '/companies' do
   @company = Company.new(params[:company])
 
   if @company.save
-    redirect '/companies'
+    redirect '/positions/new'
   else
     erb :"companies/new"
   end

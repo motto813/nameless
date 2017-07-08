@@ -1,0 +1,33 @@
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
+<h3>Apply for the position below.</h3>
+
+<div class="position_list">
+  <ul>
+    <li>Company: <%= @position.company.name %></li>
+    <li>Title: <%= @position.title %></li>
+    <li>Description: <%= @position.description %></li>
+  </ul>
+</div>
+
+<div class="new_application">
+  <form action="/applications" method="post">
+    <div>
+      <label for="application_resume">Choose your resume: </label>
+      <select id="application_resume" name="application[resume_id]">
+        <% @resumes.each do |resume| %>
+          <option value="<%= resume.id %>"><%= resume.file_name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div>
+      <input id="application_position" name="application[position_id]" type="hidden" value="<%= @position.id %>">
+    </div>
+    <div>
+      <input name="commit" type="submit" value="Apply for Position">
+    </div>
+  </form>
+</div>
