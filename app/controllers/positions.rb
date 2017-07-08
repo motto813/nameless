@@ -1,5 +1,9 @@
 get '/positions' do
-  @positions = Position.all.order(:id)
+  if params[:recruiter_id].to_i == session[:user].id
+    @positions = Position.where(recruiter_id: params[:recruiter_id])
+  else
+    @positions = Position.all.order(:id)
+  end
 
   erb :"positions/index"
 end
