@@ -1,5 +1,5 @@
 get '/applications' do
-  if params[:applicant_id].to_i == session[:user].id
+  if session[:user].instance_of?(Applicant) && params[:applicant_id].to_i == session[:user].id
     @applications = Application.submitted_by_applicant(params[:applicant_id])
   else
     @applications = Application.all

@@ -1,5 +1,9 @@
 get '/resumes' do
-  @resumes = Resume.all
+  if session[:user].instance_of?(Applicant) && params[:applicant_id].to_i == session[:user].id
+    @resumes = Resume.where(applicant_id: params[:applicant_id])
+  else
+    @resumes = Resume.all
+  end
 
   erb :"resumes/index"
 end
