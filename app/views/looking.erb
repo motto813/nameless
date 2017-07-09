@@ -7,7 +7,7 @@
 
 <% unless session[:user].instance_of? Applicant %>
 
-  <p class="login_prompt">Returning applicants: Login with your email and password below.</p>
+  <p class="login_prompt">Applicants: Login with your email and password below.</p>
   <p class="register_prompt">
     New applicants: Click here to <a href="/applicants/new">register</a>
   </p>
@@ -15,7 +15,7 @@
   <div class="login">
     <form action="/looking/login" method="post">
       <div>
-        <label for="applicant_email">Email: </label>
+        <label for="applicant_email">Applicant Email: </label>
         <input id="applicant_email" name="applicant[email]" type="text">
       </div>
       <div>
@@ -41,6 +41,9 @@
     <div class="links">
       <p>
         <a href="/applications?applicant_id=<%= session[:user].id %>">View your submitted applications</a>
+      </p>
+      <p>
+        <a href="/resumes?applicant_id=<%= session[:user].id %>">View your resumes</a>
       </p>
     </div>
 

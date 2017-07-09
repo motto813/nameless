@@ -1,5 +1,5 @@
 get '/positions' do
-  if params[:recruiter_id].to_i == session[:user].id
+  if @authorized_recruiter
     @positions = Position.where(recruiter_id: params[:recruiter_id])
   else
     @positions = Position.all.order(:id)
