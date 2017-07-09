@@ -1,3 +1,6 @@
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+
 class Resume < ActiveRecord::Base
   belongs_to :applicant
 
@@ -7,6 +10,8 @@ class Resume < ActiveRecord::Base
   validates :applicant_id, presence: true
 
   before_save :create_file_path
+
+  mount_uploader :resume_file,  ResumeUploader
 
   def create_file_path
     directory = "~/Documents/"

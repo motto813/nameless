@@ -18,6 +18,8 @@ gem 'rake', '~> 12.0.0'
 
 gem 'shotgun'
 
+gem 'carrierwave'
+
 gem 'bcrypt'
 
 group :test do
