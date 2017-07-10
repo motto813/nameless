@@ -62,3 +62,7 @@ delete '/resumes/:id' do
 
   redirect '/resumes'
 end
+
+get '/:resume_file' do |file|
+  file = File.join('', file)
+end
