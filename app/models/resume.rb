@@ -1,8 +1,3 @@
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
-
-require_relative '../uploaders/resume_uploader'
-
 class Resume < ActiveRecord::Base
   belongs_to :applicant
 

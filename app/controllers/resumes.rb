@@ -63,6 +63,14 @@ delete '/resumes/:id' do
   redirect '/resumes'
 end
 
-get '/:resume_file' do |file|
-  file = File.join('', file)
+get '/resumes/download/:file_name' do |file_name|
+  resume = Resume.find_by(file_name: file_name)
+  puts resume.class
+  unless resume.nil?
+    file = resume.resume_file.current_path
+    send_file(file, disposition: 'attachment', filename: resume.file_name)
+    redirect '/resumes'
+  else
+    redirect '/resumes'
+  end
 end
