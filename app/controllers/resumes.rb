@@ -12,42 +12,46 @@ get '/resumes/new' do
   @companies = Company.all
   @recruiters = Recruiter.all
 
+  if session[:user].instance_of? Applicant
+    @applicant = session[:user]
+  end
+
   erb :"resumes/new"
 end
 
 post '/resumes' do
-  @Resume = Resume.new(params[:Resume])
+  @resume = Resume.new(params[:Resume])
 
-  if @Resume.save
+  if @resume.save
     redirect '/resumes'
   else
     @companies = Company.all
     @recruiters = Recruiter.all
 
-    @errors = @Resume.errors.full_messages
+    @errors = @resume.errors.full_messages
     erb :"resumes/new"
   end
 end
 
 get '/resumes/:id' do
-  @Resume = Resume.find(params[:id])
+  @resume = Resume.find(params[:id])
 
   erb :"resumes/show"
 end
 
 get '/resumes/:id/edit' do
-  @Resume = Resume.find(params[:id])
+  @resume = Resume.find(params[:id])
 
   erb :"resumes/edit"
 end
 
 
 put '/resumes/:id' do
-  @Resume = Resume.find(params[:id])
+  @resume = Resume.find(params[:id])
 
-  @Resume.assign_attributes(params[:Resume])
+  @resume.assign_attributes(params[:Resume])
 
-  if @Resume.save
+  if @resume.save
     redirect '/resumes'
   else
     erb :"resumes/edit"
@@ -56,16 +60,15 @@ end
 
 
 delete '/resumes/:id' do
-  @Resume = Resume.find(params[:id])
+  @resume = Resume.find(params[:id])
 
-  @Resume.destroy
+  @resume.destroy
 
   redirect '/resumes'
 end
 
 get '/resumes/download/:file_name' do |file_name|
   resume = Resume.find_by(file_name: file_name)
-  puts resume.class
   unless resume.nil?
     file = resume.resume_file.current_path
     send_file(file, disposition: 'attachment', filename: resume.file_name)
