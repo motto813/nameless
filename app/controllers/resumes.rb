@@ -13,20 +13,30 @@ get '/resumes/new' do
   @recruiters = Recruiter.all
 
   if session[:user].instance_of? Applicant
+    puts "here i am"
     @applicant = session[:user]
   end
+
+  puts session[:user].class
+
+  puts @applicant
 
   erb :"resumes/new"
 end
 
 post '/resumes' do
-  @resume = Resume.new(params[:Resume])
+  @resume = Resume.new(params[:resume])
+
+  @resume.resume_file = params[:file]
+
+  @resume.file_name = params[:file][:filename]
 
   if @resume.save
     redirect '/resumes'
   else
     @companies = Company.all
     @recruiters = Recruiter.all
+    @applicant = session[:user]
 
     @errors = @resume.errors.full_messages
     erb :"resumes/new"
