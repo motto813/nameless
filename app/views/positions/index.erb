@@ -19,6 +19,7 @@
     <% end %>
     <% if position.was_created_by_recruiter?(session[:user]) %>
       <li>You listed this position.</li>
+      <li><a href="applications?position_id=<%= position.id %>">View applications</a></li>
       <li><a href="/positions/<%= position.id %>/edit">Edit</a></li>
       <li><%= erb :"positions/_delete", layout: false, locals: { position: position } %></li>
     <% end %>

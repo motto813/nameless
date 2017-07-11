@@ -15,14 +15,17 @@
   </ul>
 </div>
 
-<div class="register">
-  <form action="/resumes" method="post">
-    <div>
-      <label for="resume_upload">Upload here: </label>
-      <input id="resume_file_name" name="resume[file_name]" type="text">
-    </div>
-    <div>
-      <input name="commit" type="submit" value="Submit Resume">
-    </div>
-  </form>
-</div>
+<% if @applicant.instance_of? Applicant %>
+  <div class="register">
+    <form action="/resumes" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="resume_upload">Select a file: </label>
+        <input id="resume_file" name="file" type="file">
+        <input type="hidden" name="resume[applicant_id]" value="<%= @applicant.id %>">
+      </div>
+      <div>
+        <input name="commit" type="submit" value="Upload Resume">
+      </div>
+    </form>
+  </div>
+<% end %>

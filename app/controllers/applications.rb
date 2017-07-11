@@ -1,6 +1,8 @@
 get '/applications' do
   if @authorized_applicant
     @applications = Application.submitted_by_applicant(params[:applicant_id])
+  # elsif session[:user].instance_of? Recruiter
+  #   @applications = Application.submitted_for_position(params[:position_id])
   else
     @applications = Application.all
   end

@@ -12,4 +12,8 @@ class Application < ActiveRecord::Base
   def self.submitted_by_applicant(applicant_id)
     self.where(resume: Resume.where(applicant_id: applicant_id))
   end
+
+  def self.submitted_for_position(position_id)
+    self.where(position_id: position_id)
+  end
 end

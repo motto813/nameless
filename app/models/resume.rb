@@ -6,10 +6,5 @@ class Resume < ActiveRecord::Base
   validates :file_name, presence: true
   validates :applicant_id, presence: true
 
-  before_save :create_file_path
-
-  def create_file_path
-    directory = "~/Documents/"
-    self.file_path = directory + file_name
-  end
+  mount_uploader :resume_file, ResumeUploader
 end
