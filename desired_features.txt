@@ -20,9 +20,16 @@
 - Verify password upon registration with second field
 - Have new position form filled out when returning from adding a new company
 - How to have instance variables available across some but not all routes and still keep it DRY?
+- Have an applicant name their resume
+- Javascript type stuff would be to make content appear upon click of a button?
 
 TO DO TODAY
 - View Applications button from position show page is broken, let's fix that
   - Appears to be a bug with something that can happen with the URL and params hash, might have fixed it...
 - Applications by position are showing some from another position
   - Let's fix this by moving the route from applications controller to the positions controller and list applications below position in show
+  - Along the way, let's move the redirect from a successful resume upload to show resume page, then from there have a link to go to position index page
+    - INSTEAD let's redirect to the applicant's show page and have the resumes listed below
+    - Update the nav links to have a show user profile link (show routes for applicants and recruiters)
+      - Need security for this, can we check the params :id value in the route against the session[:user] id? I think so.
+        - IN FACT THIS COULD SOLVE ALL THE WEIRD STUFF WITH MAKING A NEW PARAMS VALUE FOR THE SPECIFIC ID, e.g. WE SHOULD BE LISTING RESUMES BY APPLICANT ON APPLICANT SHOW PAGE

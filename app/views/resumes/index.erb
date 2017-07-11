@@ -3,6 +3,7 @@
 <div id="resume_list">
   <% @resumes.each do |resume| %>
     <ul>
+      <li>ID: <%= resume.id %></li>
       <li>File Name: <%= resume.file_name %></li>
       <li>Applicant Name: <%= "#{resume.applicant.first_name} #{resume.applicant.last_name}" %></li>
       <li><%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %></li>

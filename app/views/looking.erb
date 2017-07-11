@@ -30,7 +30,7 @@
 
 <% else %>
 
-  <% if Resume.where(applicant: session[:user]).count == 0 %>
+  <% if Resume.where(applicant: session[:user]).nil? %>
 
     <p>
       You don't have any resumes uploaded to Nameless.

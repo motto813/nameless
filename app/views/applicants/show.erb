@@ -1,4 +1,4 @@
-<h3>Your Applicant Profile</h3>
+<h2>Your Applicant Profile</h2>
 
 <div class="profile">
   <ul>
@@ -8,3 +8,40 @@
     <li><%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } %></li>
   </ul>
 </div>
+
+<% unless Resume.where(applicant: @applicant).nil? %>
+
+<h3>Your Resumes</h3>
+
+<% @applicant.resumes.each do |resume| %>
+  <div class="resume_info">
+    <p>Resume ID: <%= resume.id %></p>
+    <p>
+      File: <a href="resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
+    </p>
+    <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
+  </div>
+<% end %>
+
+<% end %>
+
+<% unless @applications.nil? %>
+
+<h3>Your Applications</h3>
+
+<% @applications.each do |application| %>
+  <ul>
+    <li>Applicant ID: <%= application.resume.applicant_id %></li>
+    <li>Position Company: <%= application.position.company.name %></li>
+    <li>Position Title: <%= application.position.title %></li>
+    <li><a href="resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
+
+    <% if application.is_created_by_applicant?(session[:user]) %>
+      <li>This is your application.</li>
+      <li>Submitted resume: <%= application.resume.file_name %></li>
+      <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+<% end %>

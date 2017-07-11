@@ -6,11 +6,12 @@
 
 <div id="position_list">
   <% @positions.each do |position| %>
-  <ul>
-    <li>Company: <%= position.company.name %></li>
-    <li>Title: <%= position.title %></li>
-    <li>Description: <%= position.description %></li>
-    <%= erb(:"positions/_authorized_menu", layout: false, locals: { position: position }) unless session[:user].nil? %>
-  </ul>
+  <a href="positions/<%= position.id %>">
+    <ul>
+      <li>Company: <%= position.company.name %></li>
+      <li>Title: <%= position.title %></li>
+      <li>Description: <%= position.description %></li>
+    </ul>
+  </a>
   <% end %>
 </div>
