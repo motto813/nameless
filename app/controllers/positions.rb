@@ -54,7 +54,7 @@ put '/positions/:id' do
   @position.assign_attributes(params[:position])
 
   if @position.save
-    redirect '/positions'
+    redirect "/positions/#{@position.id}"
   else
     erb :"positions/edit"
   end

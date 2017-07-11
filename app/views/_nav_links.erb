@@ -5,13 +5,20 @@
   <p>
     <a href="/positions">Available Positions</a>
   </p>
+
+  <% unless session[:user].instance_of? Recruiter %>
   <p>
     <a href="/looking">Looking Home</a>
   </p>
+  <% end %>
+
+  <% unless session[:user].instance_of? Applicant %>
   <p>
     <a href="/hiring">Hiring Home</a>
   </p>
+  <% end %>
+
   <p>
-    <a href="/">Landing Page</a>
+    <a href="/">Landing Page (Logout)</a>
   </p>
 </div>

@@ -7,7 +7,19 @@
 
 <div class="register">
   <form action="/positions/<%= @position.id %>" method="post">
+  <input name="_method" type="hidden" value="put">
+    <div>
+      <label for="position_company">Company: </label>
+      <select required name="position[company_id]">
+        <!-- <option value="">Select from list</option> -->
+        <% @companies.each do |company| %>
+        <option value="<%= company.id %>" <%= "selected" if @position.company_id == company.id %>><%= company.name %></option>
+        <% end %>
+      </select>
+    </div>
+
     <%= erb :"positions/_form_fields", layout: false %>
+
     <div>
       <input name="commit" type="submit" value="Update Position">
     </div>

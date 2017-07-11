@@ -5,5 +5,6 @@
     <li>Company: <%= @position.company.name %></li>
     <li>Title: <%= @position.title %></li>
     <li>Description: <%= @position.description %></li>
+    <%= erb(:"positions/_authorized_menu", layout: false, locals: { position: @position }) unless session[:user].nil? %>
   </ul>
 </div>

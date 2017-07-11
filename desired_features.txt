@@ -1,3 +1,5 @@
+07/07/17
+
 - If you delete yourself, either as a recruiter or an applicant, what happens to the dependent database entries?
     * Does it make sense to delete them right away?
     * Currently it crashes the program because the ActiveRecord associations are broken
@@ -10,4 +12,17 @@
 
 
 - Refactor Stuff
-    - full_name virtual attributes for applicants and recruiters
+  - full_name virtual attributes for applicants and recruiters
+
+7/11/17
+
+- Look into how the send_file method works. How can i break it?  What happens when I do?
+- Verify password upon registration with second field
+- Have new position form filled out when returning from adding a new company
+- How to have instance variables available across some but not all routes and still keep it DRY?
+
+TO DO TODAY
+- View Applications button from position show page is broken, let's fix that
+  - Appears to be a bug with something that can happen with the URL and params hash, might have fixed it...
+- Applications by position are showing some from another position
+  - Let's fix this by moving the route from applications controller to the positions controller and list applications below position in show

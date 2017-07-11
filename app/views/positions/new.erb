@@ -7,10 +7,22 @@
 
 <div class="register">
   <form action="/positions" method="post">
-    <%= erb :"positions/_form_fields", layout: false %>
+    <div>
+      <label for="position_company">Company: </label>
+      <select required name="position[company_id]">
+        <option value="">Select from list</option>
+        <% @companies.each do |company| %>
+        <option value="<%= company.id %>"><%= company.name %></option>
+        <% end %>
+      </select>
+    </div>
+
     <div id="company_not_found">
       Don't see your company? Create a new one <a href="/companies/new">here.</a>
     </div>
+
+    <%= erb :"positions/_form_fields", layout: false %>
+
     <div>
       <input name="commit" type="submit" value="Create Position">
     </div>
