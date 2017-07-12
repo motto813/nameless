@@ -22,4 +22,12 @@ class Recruiter < ActiveRecord::Base
     end
     return nil
   end
+
+  def self.authorized?(recruiter, id)
+    if recruiter.instance_of?(self)
+      recruiter.id == id.to_i
+    else
+      false
+    end
+  end
 end

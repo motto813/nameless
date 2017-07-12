@@ -3,9 +3,6 @@
 - If you delete yourself, either as a recruiter or an applicant, what happens to the dependent database entries?
     * Does it make sense to delete them right away?
     * Currently it crashes the program because the ActiveRecord associations are broken
-- Authorizations... authorizations everywhere
-- And authentications! (for applicants and recruiters)
-- File upload capabilities
 - Ability to scan a document for a name?  Would have to parse through the .PDF and search for common first/last names
 - If you go to the hiring page from the looking page already logged in, should it automatically logout?
     * If so, should it display a message saying  as such?
@@ -13,6 +10,8 @@
 
 - Refactor Stuff
   - full_name virtual attributes for applicants and recruiters
+  - authorized? class methods are class agnostic for users...
+  - THere should be NO instance or class methods in a VIEW file
 
 7/11/17
 
@@ -33,3 +32,8 @@ TO DO TODAY
   - Appears to be a bug with something that can happen with the URL and params hash, might have fixed it...
 - Need security for authorization, can we check the params :id value in the route against the session[:user] id? I think so.
   - Currently doing this inside specific route, the authorized applicant and recruiter variables that are saved in the before route methods aren't working yet
+
+07/12/17
+- Only list pending applications for recruiter
+  - Make an authorized user class method for applicant and recruiter models
+- My position lists only have company name and title

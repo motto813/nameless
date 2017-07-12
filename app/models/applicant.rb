@@ -23,4 +23,12 @@ class Applicant < ActiveRecord::Base
     end
     return nil
   end
+
+  def self.authorized?(applicant, id)
+    if applicant.instance_of?(self)
+      applicant.id == id.to_i
+    else
+      false
+    end
+  end
 end
