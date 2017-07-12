@@ -33,6 +33,9 @@ get '/recruiters/:id' do
     @recruiter = Recruiter.find(params[:id])
     @positions = Position.listed_by_recruiter(params[:id])
 
+    puts @positions
+    puts "HERE I AM"
+
     erb :"recruiters/show"
   else
     status 401

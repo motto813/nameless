@@ -10,16 +10,17 @@
 
 <h2>My Listed Positions</h2>
 
-<p><a href="/positions/new">List a new position</a></p>
+<% if @positions.empty? %>
 
-<% unless @positions.nil? %>
+  <p>You don't have any listed positions.</p>
+  <p><a href="/positions/new">List a new position</a></p>
+
+<% else %>
+
+  <p><a href="/positions/new">List a new position</a></p>
 
   <% @positions.each do |position| %>
     <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
   <% end %>
-
-<% else %>
-
-  <p>You don't have any listed positions.</p>
 
 <% end %>

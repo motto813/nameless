@@ -30,7 +30,7 @@
 
 <h2>Pending Applications</h2>
 
-<% unless @position.applications.nil? %>
+<% unless @position.applications.empty? %>
 
   <% @position.applications.each do |application| %>
     <div class="position_apps">

@@ -18,7 +18,7 @@ post '/positions' do
   @position.recruiter = session[:user]
 
   if @position.save
-    redirect '/positions'
+    redirect "/recruiters/#{@position.recruiter.id}"
   else
     @companies = Company.all
     @recruiters = Recruiter.all

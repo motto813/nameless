@@ -9,13 +9,13 @@
   </ul>
 </div>
 
-<% unless Resume.where(applicant: @applicant).nil? %>
+<h2>My Resumes</h2>
 
-  <h2>My Resumes</h2>
+<div class="links">
+  <a href="/resumes/new">Upload a Resume</a>
+</div>
 
-  <div class="links">
-    <a href="/resumes/new">Upload a Resume</a>
-  </div>
+<% unless @resumes.empty? %>
 
   <br>
 
@@ -35,9 +35,9 @@
 
 <% end %>
 
-<% unless @applications.nil? %>
+<h2>Submitted Applications</h2>
 
-  <h2>Submitted Applications</h2>
+<% unless @applications.empty? %>
 
   <% @applications.each do |application| %>
     <ul>

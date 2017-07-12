@@ -34,6 +34,7 @@ get '/applicants/:id' do
   if session[:user].instance_of?(Applicant) && params[:id].to_i == session[:user].id
     @applicant = Applicant.find(params[:id])
     @applications = Application.submitted_by_applicant(params[:id])
+    @resumes = Resume.where(applicant: @applicant)
 
     erb :"applicants/show"
 

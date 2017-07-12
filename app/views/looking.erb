@@ -3,12 +3,12 @@
   div { padding: 5px; }
 </style>
 
-<h1>Looking Homepage</h1>
+<h1>Nameless Looking</h1>
 
 <% unless session[:user].instance_of? Applicant %>
 
   <p class="register_prompt">
-    New applicants: Click here to <a href="/applicants/new">register</a>
+    New applicants: Click here to <a href="/applicants/new">register.</a>
   </p>
   <p class="login_prompt">Returning Applicants: Login with your email and password below.</p>
 
@@ -30,7 +30,7 @@
 
 <% else %>
 
-  <% if Resume.where(applicant: session[:user]).nil? %>
+  <% if Resume.where(applicant: session[:user]).empty? %>
 
     <p>
       You don't have any resumes uploaded to Nameless.
