@@ -23,30 +23,29 @@ post '/applications' do
   end
 end
 
-get '/applications/:id' do
-  @application = Application.find(params[:id])
+# get '/applications/:id' do
+#   @application = Application.find(params[:id])
 
-  erb :"applications/show"
-end
+#   erb :"applications/show"
+# end
 
-get '/applications/:id/edit' do
-  @application = Application.find(params[:id])
+# get '/applications/:id/edit' do
+#   @application = Application.find(params[:id])
 
-  erb :"applications/edit"
-end
+#   erb :"applications/edit"
+# end
 
+# put '/applications/:id' do
+#   @application = Application.find(params[:id])
 
-put '/applications/:id' do
-  @application = Application.find(params[:id])
+#   @application.assign_attributes(params[:application])
 
-  @application.assign_attributes(params[:application])
-
-  if @application.save
-    redirect '/applications'
-  else
-    erb :"applications/edit"
-  end
-end
+#   if @application.save
+#     redirect '/applications'
+#   else
+#     erb :"applications/edit"
+#   end
+# end
 
 
 delete '/applications/:id' do

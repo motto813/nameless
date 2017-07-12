@@ -37,3 +37,7 @@ TO DO TODAY
 - Only list pending applications for recruiter
   - Make an authorized user class method for applicant and recruiter models
 - My position lists only have company name and title
+- SCHEDULED FOR INTERVIEW column in applications table
+  - Perhaps a new interviews table? I think so
+      - Join between applications, applicants, and recruiters?
+  - IF application is scheduled for interview, recruiter can view applicant profile
