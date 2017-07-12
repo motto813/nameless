@@ -4,14 +4,6 @@
   <a href="/positions/new">List a new position</a>
 </div>
 
-<div id="position_list">
-  <% @positions.each do |position| %>
-  <a href="/positions/<%= position.id %>">
-    <ul>
-      <li>Company: <%= position.company.name %></li>
-      <li>Title: <%= position.title %></li>
-      <li>Description: <%= position.description %></li>
-    </ul>
-  </a>
-  <% end %>
-</div>
+<% @positions.each do |position| %>
+  <%= erb :"positions/_position_info" %>
+<% end %>
