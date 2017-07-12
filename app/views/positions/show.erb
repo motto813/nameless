@@ -8,7 +8,7 @@
 <br>
 
 <div id="applicant_position">
-  <% if session[:user].instance_of? Applicant %>
+  <% if @is_applicant %>
 
       <% if @applicant_has_applied %>
         <p>You have applied for this position</p>

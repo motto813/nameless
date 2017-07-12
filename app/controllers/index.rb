@@ -1,5 +1,10 @@
 enable :sessions
 
+before do
+  @is_applicant = session[:user].instance_of?(Applicant)
+  @is_recruiter = session[:user].instance_of?(Recruiter)
+end
+
 get '/' do
   erb :index, layout: false
 end

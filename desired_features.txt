@@ -34,10 +34,9 @@ TO DO TODAY
   - Currently doing this inside specific route, the authorized applicant and recruiter variables that are saved in the before route methods aren't working yet
 
 07/12/17
-- Only list pending applications for recruiter
-  - Make an authorized user class method for applicant and recruiter models
-- My position lists only have company name and title
 - SCHEDULED FOR INTERVIEW column in applications table
   - Perhaps a new interviews table? I think so
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
+- Confirm password form field for new recruiters and applicants
+- before route method instantiates is_applicant and is_recruiter instance variables
