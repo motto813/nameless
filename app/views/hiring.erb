@@ -34,9 +34,4 @@
   <p>
     <a href="/positions/new">List a Position for Hire</a>
   </p>
-  <% if session[:user].instance_of? Recruiter %>
-    <p>
-      <a href="/positions?recruiter_id=<%= session[:user].id %>">View your Listed Positions</a>
-    </p>
-  <% end %>
 </div>

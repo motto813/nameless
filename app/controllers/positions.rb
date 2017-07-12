@@ -1,9 +1,5 @@
 get '/positions' do
-  if @authorized_recruiter
-    @positions = Position.where(recruiter_id: params[:recruiter_id])
-  else
-    @positions = Position.all.order(:id)
-  end
+  @positions = Position.all.order(:id)
 
   erb :"positions/index"
 end
