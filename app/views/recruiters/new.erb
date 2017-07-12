@@ -3,19 +3,20 @@
   div { padding: 5px; }
 </style>
 
-<p class="register_prompt">Recruiters: Register by completing all the fields below.</p>
+<h1>New Recruiter</h1>
+
+<p class="register_prompt">Register by completing all the fields below.</p>
 
 <div class="register">
   <form action="/recruiters" method="post">
     <%= erb :"recruiters/_form_fields", layout: false %>
     <div>
-      <label for="recruiter_password">Password</label>
+      <label for="recruiter_password">Password:</label>
+      <br>
       <input id="recruiter_password" name="recruiter[password]" type="password">
     </div>
     <div>
-      <input name="commit" type="submit" value="Register recruiter">
+      <input name="commit" type="submit" value="Register Recruiter">
     </div>
   </form>
 </div>
-
-<%= erb :_login_status, layout: false %>

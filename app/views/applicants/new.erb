@@ -3,13 +3,16 @@
   div { padding: 5px; }
 </style>
 
-<p class="register_prompt">Applicants: Register by completing all the fields below.</p>
+<h1>New Applicant</h1>
+
+<p class="register_prompt">Register by completing all the fields below.</p>
 
 <div class="register">
   <form action="/applicants" method="post">
     <%= erb :"applicants/_form_fields", layout: false %>
     <div>
-      <label for="applicant_password">Password</label>
+      <label for="applicant_password">Password:</label>
+      <br>
       <input id="applicant_password" name="applicant[password]" type="password">
     </div>
     <div>

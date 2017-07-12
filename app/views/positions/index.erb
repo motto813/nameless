@@ -1,29 +1,11 @@
 <h3>List of current positions</h3>
 
-<div class="links">
-  <a href="/positions/new">List a new position</a>
-</div>
+<% if session[:user].instance_of? Recruiter %>
+  <div class="links">
+    <a href="/positions/new">List a new position</a>
+  </div>
+<% end %>
 
-<div id="position_list">
-  <% @positions.each do |position| %>
-  <ul>
-    <li>Company: <%= position.company.name %></li>
-    <li>Title: <%= position.title %></li>
-    <li>Description: <%= position.description %></li>
-    <% if session[:user].instance_of? Applicant %>
-      <% if position.is_applied_to_by_applicant?(session[:user]) %>
-        <li>You have applied for this position</li>
-      <% else %>
-        <li><a href="/applications/new?position_id=<%= position.id %>&applicant_id=<%= session[:user].id %>">Apply for Position</a></li>
-      <% end %>
-    <% end %>
-    <% if position.was_created_by_recruiter?(session[:user]) %>
-      <li>You listed this position.</li>
-      <li><a href="applications?position_id=<%= position.id %>">View applications</a></li>
-      <li><a href="/positions/<%= position.id %>/edit">Edit</a></li>
-      <li><%= erb :"positions/_delete", layout: false, locals: { position: position } %></li>
-    <% end %>
-    </ul>
-  </ul>
-  <% end %>
-</div>
+<% @positions.each do |position| %>
+  <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
+<% end %>

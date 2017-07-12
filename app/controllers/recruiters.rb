@@ -1,3 +1,11 @@
+before do
+  if session[:user].instance_of?(Recruiter) && params[:id].to_i == session[:user].id
+    @authorized_recruiter = true
+  else
+    @authorized_recruiter = false
+  end
+end
+
 get '/recruiters' do
   @recruiters = Recruiter.all
 
@@ -21,7 +29,21 @@ post '/recruiters' do
 end
 
 get '/recruiters/:id' do
-  @recruiter = Recruiter.find(params[:id])
+  if session[:user].instance_of?(Recruiter) && params[:id].to_i == session[:user].id
+    @recruiter = Recruiter.find(params[:id])
+    @positions = Position.listed_by_recruiter(params[:id])
+
+    puts @positions
+    puts "HERE I AM"
+
+    erb :"recruiters/show"
+  else
+    status 401
+    @recruiter = Recruiter.new
+    @errors = @recruiter.errors.full_messages
+    @errors << "You can't view that recruiter's profile"
+    erb :hiring
+  end
 
   erb :"recruiters/show"
 end

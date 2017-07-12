@@ -32,7 +32,7 @@ post '/resumes' do
   @resume.file_name = params[:file][:filename]
 
   if @resume.save
-    redirect '/resumes'
+    redirect "/applicants/#{@resume.applicant.id}"
   else
     @companies = Company.all
     @recruiters = Recruiter.all

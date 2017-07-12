@@ -3,19 +3,19 @@
   div { padding: 5px; }
 </style>
 
-<h1>Hiring Homepage</h1>
+<h1>Nameless Hiring</h1>
 
 <% unless session[:user].instance_of? Recruiter %>
 
-  <p class="login_prompt">Recruiters: Login with your email and password below.</p>
   <p class="register_prompt">
-    New recruiters: Click here to <a href="/recruiters/new">register</a>
+    New Recruiters: Click here to <a href="/recruiters/new">register.</a>
   </p>
+  <p class="login_prompt">Returning Recruiters: Login with your email and password below.</p>
 
   <div class="login">
     <form action="/hiring/login" method="post">
       <div>
-        <label for="recruiter_email">Recruiter Email: </label>
+        <label for="recruiter_email">Email: </label>
         <input id="recruiter_email" name="recruiter[email]" type="text">
       </div>
       <div>
@@ -28,15 +28,12 @@
     </form>
   </div>
 
-<% end %>
+<% else %>
 
-<div class="links">
-  <p>
-    <a href="/positions/new">List a Position for Hire</a>
-  </p>
-  <% if session[:user].instance_of? Recruiter %>
+  <div class="links">
     <p>
-      <a href="/positions?recruiter_id=<%= session[:user].id %>">View your Listed Positions</a>
+      <a href="/positions/new">List a Position for Hire</a>
     </p>
-  <% end %>
-</div>
+  </div>
+
+<% end %>

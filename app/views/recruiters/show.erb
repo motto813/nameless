@@ -1,4 +1,4 @@
-<h3>Your Recruiter Profile</h3>
+<h1><%= "#{@recruiter.first_name} #{@recruiter.last_name}" %></h1>
 
 <div class="profile">
   <ul>
@@ -7,3 +7,20 @@
     <li><%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } %></li>
   </ul>
 </div>
+
+<h2>My Listed Positions</h2>
+
+<% if @positions.empty? %>
+
+  <p>You don't have any listed positions.</p>
+  <p><a href="/positions/new">List a new position</a></p>
+
+<% else %>
+
+  <p><a href="/positions/new">List a new position</a></p>
+
+  <% @positions.each do |position| %>
+    <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
+  <% end %>
+
+<% end %>

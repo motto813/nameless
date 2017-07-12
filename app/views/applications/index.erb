@@ -6,7 +6,8 @@
     <li>Applicant ID: <%= application.resume.applicant_id %></li>
     <li>Position Company: <%= application.position.company.name %></li>
     <li>Position Title: <%= application.position.title %></li>
-    <li><a href="resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
+    <li><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
+
     <% if application.is_created_by_applicant?(session[:user]) %>
       <li>This is your application.</li>
       <li>Submitted resume: <%= application.resume.file_name %></li>

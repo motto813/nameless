@@ -1,3 +1,11 @@
+before do
+  if session[:user].instance_of?(Applicant) && params[:id].to_i == session[:user].id
+    @authorized_applicant = true
+  else
+    @authorized_applicant = false
+  end
+end
+
 get '/applicants' do
   @applicants = Applicant.all
 
@@ -16,16 +24,27 @@ post '/applicants' do
   if @applicant.save
     redirect '/looking'
   else
-    @errors = applicant.errors.full_messages
+    @errors = @applicant.errors.full_messages
 
     erb :"applicants/new"
   end
 end
 
 get '/applicants/:id' do
-  @applicant = Applicant.find(params[:id])
+  if session[:user].instance_of?(Applicant) && params[:id].to_i == session[:user].id
+    @applicant = Applicant.find(params[:id])
+    @applications = Application.submitted_by_applicant(params[:id])
+    @resumes = Resume.where(applicant: @applicant)
 
-  erb :"applicants/show"
+    erb :"applicants/show"
+
+  else
+    status 401
+    @applicant = Applicant.new
+    @errors = @applicant.errors.full_messages
+    @errors << "You can't view that applicant's profile"
+    erb :hiring
+  end
 end
 
 get '/applicants/:id/edit' do

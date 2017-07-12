@@ -1,9 +1,5 @@
 get '/positions' do
-  if @authorized_recruiter
-    @positions = Position.where(recruiter_id: params[:recruiter_id])
-  else
-    @positions = Position.all.order(:id)
-  end
+  @positions = Position.all.order(:id)
 
   erb :"positions/index"
 end
@@ -22,7 +18,7 @@ post '/positions' do
   @position.recruiter = session[:user]
 
   if @position.save
-    redirect '/positions'
+    redirect "/recruiters/#{@position.recruiter.id}"
   else
     @companies = Company.all
     @recruiters = Recruiter.all
@@ -54,7 +50,7 @@ put '/positions/:id' do
   @position.assign_attributes(params[:position])
 
   if @position.save
-    redirect '/positions'
+    redirect "/positions/#{@position.id}"
   else
     erb :"positions/edit"
   end

@@ -1,4 +1,4 @@
-<h3>Your Applicant Profile</h3>
+<h1><%= "#{@applicant.first_name} #{@applicant.last_name}" %></h1>
 
 <div class="profile">
   <ul>
@@ -8,3 +8,50 @@
     <li><%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } %></li>
   </ul>
 </div>
+
+<h2>My Resumes</h2>
+
+<div class="links">
+  <a href="/resumes/new">Upload a Resume</a>
+</div>
+
+<% unless @resumes.empty? %>
+
+  <br>
+
+  <% @applicant.resumes.each do |resume| %>
+    <div class="resume_info">
+      <p>Resume ID: <%= resume.id %></p>
+      <p>
+        File: <a href="/resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
+      </p>
+      <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <p>You don't have any resumes.</p>
+
+<% end %>
+
+<h2>Submitted Applications</h2>
+
+<% unless @applications.empty? %>
+
+  <% @applications.each do |application| %>
+    <ul>
+      <li>Position Company: <%= application.position.company.name %></li>
+      <li>Position Title: <%= application.position.title %></li>
+      <li>
+        Submitted resume: <a href="/resumes/download/<%= application.resume.file_name %>"><%= application.resume.file_name %></a>
+      </li>
+      <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
+    </ul>
+  <% end %>
+
+<% else %>
+
+  <p>You haven't applied to any positions.</p>
+
+<% end %>
