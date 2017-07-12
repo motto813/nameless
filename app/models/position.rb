@@ -1,4 +1,4 @@
-class Position < ActiveRecord::Base
+  class Position < ActiveRecord::Base
   belongs_to :company
   belongs_to :recruiter
 
@@ -18,5 +18,9 @@ class Position < ActiveRecord::Base
 
   def was_created_by_recruiter?(recruiter)
     self.recruiter == recruiter
+  end
+
+  def self.listed_by_recruiter(recruiter_id)
+    self.where(recruiter_id: recruiter_id)
   end
 end

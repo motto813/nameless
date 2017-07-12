@@ -23,7 +23,7 @@
     <div class="resume_info">
       <p>Resume ID: <%= resume.id %></p>
       <p>
-        File: <a href="resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
+        File: <a href="/resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
       </p>
       <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
     </div>
@@ -44,7 +44,7 @@
       <li>Position Company: <%= application.position.company.name %></li>
       <li>Position Title: <%= application.position.title %></li>
       <li>
-        Submitted resume: <a href="resumes/download/<%= application.resume.file_name %>"><%= application.resume.file_name %></a>
+        Submitted resume: <a href="/resumes/download/<%= application.resume.file_name %>"><%= application.resume.file_name %></a>
       </li>
       <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
     </ul>

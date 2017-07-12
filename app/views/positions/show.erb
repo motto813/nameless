@@ -40,7 +40,7 @@
   <ul>
     <% @position.applications.each do |application| %>
       <li>Applicant ID: <%= application.resume.id %></li>
-      <li><a href="resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
+      <li><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
     <% end %>
   </ul>
 </div>

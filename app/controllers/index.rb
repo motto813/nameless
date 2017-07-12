@@ -1,19 +1,5 @@
 enable :sessions
 
-before do
-  if session[:user].instance_of?(Applicant) && params[:applicant_id].to_i == session[:user].id
-    @authorized_applicant = true
-  else
-    @authorized_applicant = false
-  end
-
-  if session[:user].instance_of?(Recruiter) && params[:recruiter_id].to_i == session[:user].id
-    @authorized_recruiter = true
-  else
-    @authorized_recruiter = false
-  end
-end
-
 get '/' do
   erb :index, layout: false
 end
