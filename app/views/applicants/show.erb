@@ -20,7 +20,7 @@
   <% @applications.each do |application| %>
     <%= erb :"positions/_position_info", layout: false, locals: { position: application.position } %>
     <p>
-      Submitted resume: <a href="/resumes/download/<%= application.resume.file_name %>"><%= application.resume.file_name %></a>
+      Resume: <a href="/resumes/download/<%= application.resume.file_name %>"><%= application.resume.file_name %></a>
     </p>
     <p>
       <%= erb :"applications/_delete", layout: false, locals: { application: application } %>

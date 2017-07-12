@@ -8,15 +8,15 @@
     * If so, should it display a message saying  as such?
 
 
-- Refactor Stuff
+- REFACTOR Stuff
   - full_name virtual attributes for applicants and recruiters
-  - authorized? class methods are class agnostic for users...
+  - authorized class methods are class agnostic for users...
   - THere should be NO instance or class methods in a VIEW file
+
 
 7/11/17
 
 - Look into how the send_file method works. How can i break it?  What happens when I do?
-- Verify password upon registration with second field
 - Have new position form filled out when returning from adding a new company
 - How to have instance variables available across some but not all routes and still keep it DRY?
 - Have an applicant name their resume
@@ -25,20 +25,13 @@
   - SHould it log them in and take them to their user show page?
 - Want recruiters to be associated with only their companies on list a position
 - List positions and show which are posted by user (recruiter) and order as such
-- Applicants shouldn't be able to see pending applications on position show page
 
-TO DO TODAY
-- View Applications button from position show page is broken, let's fix that
-  - Appears to be a bug with something that can happen with the URL and params hash, might have fixed it...
-- Need security for authorization, can we check the params :id value in the route against the session[:user] id? I think so.
-  - Currently doing this inside specific route, the authorized applicant and recruiter variables that are saved in the before route methods aren't working yet
 
 07/12/17
 - SCHEDULED FOR INTERVIEW column in applications table
   - Perhaps a new interviews table? I think so
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
-- Confirm password form field for new recruiters and applicants
 - Make an applications show page
   - Show the same info as currently, make the list only have position company and title
   - Be able to download resume and delete the application
