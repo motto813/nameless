@@ -1,6 +1,6 @@
 <h3>List of current positions</h3>
 
-<% if session[:user].instance_of? Recruiter %>
+<% if @is_recruiter %>
   <div class="links">
     <a href="/positions/new">List a new position</a>
   </div>

@@ -12,14 +12,9 @@ get '/resumes/new' do
   @companies = Company.all
   @recruiters = Recruiter.all
 
-  if session[:user].instance_of? Applicant
-    puts "here i am"
+  if @is_applicant
     @applicant = session[:user]
   end
-
-  puts session[:user].class
-
-  puts @applicant
 
   erb :"resumes/new"
 end

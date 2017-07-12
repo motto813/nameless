@@ -3,7 +3,7 @@
     <a href="/positions">Available Positions</a>
   </p>
 
-  <% if session[:user].instance_of? Applicant %>
+  <% if @is_applicant %>
     <p>
       <a href="/applicants/<%= session[:user].id %>">Your Applicant Profile</a>
     </p>
@@ -12,7 +12,7 @@
     </p>
   <% end %>
 
-  <% if session[:user].instance_of? Recruiter %>
+  <% if @is_recruiter %>
     <p>
       <a href="/recruiters/<%= session[:user].id %>">Your Recruiter Profile</a>
     </p>

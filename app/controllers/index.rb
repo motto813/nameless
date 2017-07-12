@@ -10,7 +10,7 @@ get '/' do
 end
 
 get '/looking' do
-  unless session[:user].instance_of? Applicant
+  unless @is_applicant
     session.delete(:user)
     session.delete(:message)
   end
@@ -31,7 +31,7 @@ post '/looking/login' do
 end
 
 get '/hiring' do
-  unless session[:user].instance_of? Recruiter
+  unless @is_recruiter
     session.delete(:user)
     session.delete(:message)
   end

@@ -3,6 +3,8 @@
   div { padding: 5px; }
 </style>
 
+<h1>Upload Resume</h1>
+
 <p class="register_prompt"><b>Applicants:</b> Upload your resume below.</p>
 
 <div id="unwanted_items">
@@ -15,7 +17,7 @@
   </ul>
 </div>
 
-<% if @applicant.instance_of? Applicant %>
+<% if @is_applicant %>
   <div class="register">
     <form action="/resumes" method="post" enctype="multipart/form-data">
       <div>
