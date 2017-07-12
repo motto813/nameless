@@ -39,4 +39,6 @@ TO DO TODAY
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
 - Confirm password form field for new recruiters and applicants
-- before route method instantiates is_applicant and is_recruiter instance variables
+- Make an applications show page
+  - Show the same info as currently, make the list only have position company and title
+  - Be able to download resume and delete the application

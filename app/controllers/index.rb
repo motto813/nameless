@@ -10,7 +10,9 @@ get '/' do
 end
 
 get '/looking' do
-  unless @is_applicant
+  if @is_applicant
+    redirect "/applicants/#{session[:user].id}"
+  elsif @is_recruiter
     session.delete(:user)
     session.delete(:message)
   end
@@ -31,9 +33,11 @@ post '/looking/login' do
 end
 
 get '/hiring' do
-  unless @is_recruiter
+  if @is_applicant
     session.delete(:user)
     session.delete(:message)
+  elsif @is_recruiter
+    redirect "/recruiters/#{session[:user].id}"
   end
 
   erb :hiring

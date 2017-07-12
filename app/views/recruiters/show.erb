@@ -8,16 +8,17 @@
   </ul>
 </div>
 
+<p>
+  <a href="/positions/new">List a Position for Hire</a>
+</p>
+
 <h2>My Listed Positions</h2>
 
 <% if @positions.empty? %>
 
   <p>You don't have any listed positions.</p>
-  <p><a href="/positions/new">List a new position</a></p>
 
 <% else %>
-
-  <p><a href="/positions/new">List a new position</a></p>
 
   <% @positions.each do |position| %>
     <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
