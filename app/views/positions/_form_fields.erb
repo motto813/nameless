@@ -1,9 +1,11 @@
 <div>
-  <label for="position_title">Position Title: </label>
+  <label for="position_title">Title: </label>
+  <br>
   <input id="position_title" name="position[title]" type="text" value="<%= @position.title %>">
 </div>
 
 <div>
   <label for="position_description">Description: </label>
-  <textarea id="position_description" name="position[description]" type="text" rows="8" cols="30"><%= @position.description %></textarea>
+  <br>
+  <textarea id="position_description" name="position[description]" type="text" rows="6" cols="30"><%= @position.description %></textarea>
 </div>

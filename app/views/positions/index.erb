@@ -1,9 +1,11 @@
 <h3>List of current positions</h3>
 
-<div class="links">
-  <a href="/positions/new">List a new position</a>
-</div>
+<% if session[:user].instance_of? Recruiter %>
+  <div class="links">
+    <a href="/positions/new">List a new position</a>
+  </div>
+<% end %>
 
 <% @positions.each do |position| %>
-  <%= erb :"positions/_position_info" %>
+  <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
 <% end %>
