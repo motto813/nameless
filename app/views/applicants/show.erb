@@ -1,57 +1,78 @@
+<style>
+  div { padding: 5px; }
+</style>
+
 <h1><%= "#{@applicant.first_name} #{@applicant.last_name}" %></h1>
 
 <div class="profile">
-  <ul>
-    <li>Applicant ID: <%= @applicant.id %></li>
-    <li>Name: <%= "#{@applicant.first_name} #{@applicant.last_name}" %></li>
-    <li>Email: <%= @applicant.email %></li>
-    <li><%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } %></li>
-  </ul>
+  <div>
+    Applicant ID: <%= @applicant.id %>
+  </div>
+  <div>
+    Name: <%= "#{@applicant.first_name} #{@applicant.last_name}" %>
+  </div>
+  <div>
+    Email: <%= @applicant.email %>
+  </div>
+  <div>
+    <%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } if @authorized %>
+  </div>
 </div>
 
-<p>
-  <a href="/positions">View Positions for Hire</a>
-</p>
+<% if @authorized %>
 
-<h2>Submitted Applications</h2>
+  <div>
+    <a href="/positions">View Positions for Hire</a>
+  </div>
 
-<% unless @applications.empty? %>
+  <h2>Submitted Applications</h2>
 
-  <% @applications.each do |application| %>
-    <a href="/applications/<%= application.id %>">
-      <%= erb :"positions/_position_info", layout: false, locals: { position: application.position } %>
-    </a>
+  <% unless @applications.empty? %>
+
+    <% @applications.each do |application| %>
+      <div>
+        <a href="/applications/<%= application.id %>">
+          <%= erb :"positions/_position_info", layout: false, locals: { position: application.position } %>
+        </a>
+      </div>
+      <div>
+        <% if application.scheduled_for_interview? %>
+          Congrats! This application has been selected for interview.
+        <% end %>
+      </div>
+    <% end %>
+
+  <% else %>
+
+    <p>You haven't applied to any positions.</p>
+
   <% end %>
 
-<% else %>
+  <h2>My Resumes</h2>
 
-  <p>You haven't applied to any positions.</p>
+  <div class="links">
+    <a href="/resumes/new">Upload a Resume</a>
+  </div>
 
-<% end %>
+  <% unless @resumes.empty? %>
 
-<h2>My Resumes</h2>
+    <br>
 
-<div class="links">
-  <a href="/resumes/new">Upload a Resume</a>
-</div>
+    <% @applicant.resumes.each do |resume| %>
+      <div class="resume_info">
+        <div>Resume ID: <%= resume.id %></div>
+        <div>Uploaded on: <%= resume.created_at.to_date %></div>
+        <div>
+          File: <a href="/resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
+        </div>
+        <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
+        <br>
+      </div>
+    <% end %>
 
-<% unless @resumes.empty? %>
+  <% else %>
 
-  <br>
+    <p>You don't have any resumes.</p>
 
-  <% @applicant.resumes.each do |resume| %>
-    <div class="resume_info">
-      <p>Uploaded on: <%= resume.created_at.to_date %></p>
-      <p>
-        File: <a href="/resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
-      </p>
-      <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
-      <br>
-    </div>
   <% end %>
-
-<% else %>
-
-  <p>You don't have any resumes.</p>
-
 <% end %>

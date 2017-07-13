@@ -9,10 +9,10 @@
 
 
 - REFACTOR Stuff
-  - full_name virtual attributes for applicants and recruiters
   - authorized class methods are class agnostic for users...
-  - THere should be NO instance or class methods in a VIEW file
   - Maybe could have a super class for User and have Applicant and Recruiter inherit from it
+  - It appears that it's somewhat easy to run out of COOKIE space when using a model object in the SESSIONS object
+    - Might want to store a user_id instead, would have other implications though...
 
 
 7/11/17
@@ -36,5 +36,3 @@
 
 
 07/13/17
-- Working through adding interviews and company_recruiters tables and features
-  - Option for recruiter to schedule interview when looking at application

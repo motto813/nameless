@@ -1,17 +1,44 @@
-<h1>My Application</h1>
+<style>
+  div { padding: 5px; }
+</style>
+
+<h1><%= @applicant.full_name %></h1>
 
 <div id="show_application">
-  <h3>For <a href="/positions/<%= @application.position.id %>">
-      <%= @position.title %></a> At <%= @position.company.name %>
+  <h3>Application For <a href="/positions/<%= @application.position.id %>">
+      <%= @application.position.title %></a> At <%= @application.position.company.name %>
   </h3>
-  <p>
-    Description: <em><%= @position.description %></em>
-  </p>
+
+  <div>
+    Description: <em><%= @application.position.description %></em>
+  </div>
+
   <br>
-  <p>
+
+  <div>
+    <% if @application.scheduled_for_interview? %>
+      <a href="/interviews/<%= @application.interview.id %>">Schedule Interview</a>
+    <% else %>
+      Pending recruiter's response.
+    <% end %>
+  </div>
+
+  <br>
+
+  <div>
     Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @application.resume.file_name %></a>
-  </p>
-  <p>
+  </div>
+
+  <div>
     <%= erb :"applications/_delete", layout: false, locals: { application: @application } %>
-  </p>
+  </div>
 </div>
+
+<% if @application.scheduled_for_interview? %>
+  <div>
+    <h2>Interview</h2>
+  </div>
+
+  <%= erb :"interviews/_interview_info", layout: false, locals: { interview: @application.interview } %>
+<% end %>
+

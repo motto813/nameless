@@ -29,8 +29,14 @@ post '/positions' do
 end
 
 get '/positions/:id' do
+
+  session.each_entry { |entry| puts entry }
+
   @position = Position.find(params[:id])
-  @applicant_has_applied = @position.is_applied_to_by_applicant?(session[:user])
+
+  @applicant_id = session[:user].id if @is_applicant
+  @applicant_has_applied = @position.is_applied_to_by_applicant?(Applicant.find(@applicant_id))
+
   @authorized_recruiter = Recruiter.authorized?(session[:user], @position.recruiter_id)
 
   erb :"positions/show"

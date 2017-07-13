@@ -4,14 +4,14 @@ get '/applications' do
   erb :"applications/index"
 end
 
-get '/applications/new' do
-  @position = Position.find(params[:position_id])
+# get '/applications/new' do
+#   @position = Position.find(params[:position_id])
 
-  @applicant = Applicant.find(params[:applicant_id])
-  @resumes = @applicant.resumes
+#   @applicant = Applicant.find(params[:applicant_id])
+#   @resumes = @applicant.resumes
 
-  erb :"applications/new"
-end
+#   erb :"applications/new"
+# end
 
 post '/applications' do
   @application = Application.new(params[:application])
@@ -19,7 +19,7 @@ post '/applications' do
   if @application.save
     redirect "/applicants/#{@application.resume.applicant.id}"
   else
-    erb :"applications/new"
+    erb :"applications/_new"
   end
 end
 
@@ -27,8 +27,6 @@ get '/applications/:id' do
   @application = Application.find(params[:id])
   if Applicant.authorized?(session[:user], @application.resume.applicant.id)
     @applicant = session[:user]
-    @resume = @application.resume
-    @position = @application.position
 
     erb :"applications/show"
   else

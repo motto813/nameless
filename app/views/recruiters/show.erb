@@ -1,25 +1,35 @@
+<style>
+  div { padding: 5px; }
+</style>
+
 <h1><%= "#{@recruiter.first_name} #{@recruiter.last_name}" %></h1>
 
 <div class="profile">
-  <ul>
-    <li>Recruiter ID: <%= @recruiter.id %></li>
-    <li>Name: <%= "#{@recruiter.first_name} #{@recruiter.last_name}" %></li>
-    <li>Email: <%= @recruiter.email %></li>
-    <li><%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } %></li>
-  </ul>
+  <div>
+    Recruiter ID: <%= @recruiter.id %>
+  </div>
+  <div>
+    Name: <%= "#{@recruiter.first_name} #{@recruiter.last_name}" %>
+  </div>
+  <div>
+    Email: <%= @recruiter.email %>
+  </div>
+  <div>
+    <%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } %>
+  </div>
 </div>
 
 <br>
 
-<p>
+<div>
   <a href="/positions/new">List a Position for Hire</a>
-</p>
+</div>
 
 <h2>My Listed Positions</h2>
 
 <% if @positions.empty? %>
 
-  <p>You don't have any listed positions.</p>
+  <div>You don't have any listed positions.</div>
 
 <% else %>
 

@@ -7,17 +7,18 @@
 
 <br>
 
-<div id="applicant_position">
-  <% if @is_applicant %>
+<% if @is_applicant %>
 
-      <% if @applicant_has_applied %>
-        <p>You have applied for this position</p>
-      <% else %>
-        <p><a href="/applications/new?position_id=<%= @position.id %>&applicant_id=<%= session[:user].id %>">Apply for Position</a></p>
-      <% end %>
+  <div id="applicant_position">
 
-  <% end %>
-</div>
+    <% if @applicant_has_applied %>
+      <p>You have applied for this position</p>
+    <% else %>
+      <%= erb :"applications/_new", layout: false, locals: { position: @position, applicant: Applicant.find(@applicant_id) } %>
+    <% end %>
+
+  </div>
+<% end %>
 
 <% if @authorized_recruiter %>
 
