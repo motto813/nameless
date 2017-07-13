@@ -1,6 +1,7 @@
 class Application < ActiveRecord::Base
   belongs_to :resume
   belongs_to :position
+  belongs_to :interview
 
   validates :resume_id, presence: true
   validates :position_id, presence: true
