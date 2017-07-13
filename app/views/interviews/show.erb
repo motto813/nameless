@@ -1,0 +1,18 @@
+<h1>Interview for <%= @interview.applicant.full_name %></h1>
+
+<div class="interview_info">
+  Scheduled Time: <%= @interview.meeting_time %>
+  <p>
+    <% unless @interview.meeting_time.nil? %>
+      Meeting is scheduled. <a href="/interviews/<%= @interview.id %>/edit">Reschedule</a>
+    <% else %>
+      No meeting time scheduled yet. <a href="/interviews/<%= @interview.id %>/edit">Schedule a time</a>
+    <% end %>
+  </p>
+  <p>
+    Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
+  </p>
+  <p>
+    Recruiter Name: <%= @interview.recruiter.full_name %>
+  </p>
+</div>

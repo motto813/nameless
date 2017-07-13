@@ -1,0 +1,33 @@
+<h1>Interview for <%= @interview.applicant.full_name %></h1>
+
+<div class="interview_info">
+  <form action="/interviews/<%= @interview.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+
+    <div>
+      <label for="interview_meeting_time">Schedule a meeting time:</label>
+      <br>
+      <input id="interview_meeting_time" type="datetime-local" name="interview[meeting_time]" value="<%= meeting_time_value_format(@interview.meeting_time) %>">
+    </div>
+
+    <div>
+      <input name="commit" type="submit" value="Update Meeting Time">
+    </div>
+  </form>
+
+  <p>
+    <% unless @interview.meeting_time %>
+      No meeting time scheduled yet.
+    <% else %>
+      Meeting is scheduled.
+    <% end %>
+  </p>
+
+  <p>
+    Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
+  </p>
+
+  <p>
+    Recruiter Name: <%= @interview.recruiter.full_name %>
+  </p>
+</div>

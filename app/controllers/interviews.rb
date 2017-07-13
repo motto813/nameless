@@ -12,6 +12,7 @@ post '/interviews' do
   @interview = Interview.new(params[:interview])
 
   if @interview.save
+    @interview.application.interview_id = @interview.id
     redirect "/interviews/#{@interview.id}"
   else
     erb :"interviews/new"
