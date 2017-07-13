@@ -1,18 +1,32 @@
+<style>
+  form { padding: 10px; }
+  div { padding: 5px; }
+</style>
+
 <h1>Interview for <%= @interview.applicant.full_name %></h1>
 
 <div class="interview_info">
-  Scheduled Time: <%= @interview.meeting_time %>
-  <p>
-    <% unless @interview.meeting_time.nil? %>
-      Meeting is scheduled. <a href="/interviews/<%= @interview.id %>/edit">Reschedule</a>
-    <% else %>
+  <div>
+    Scheduled Time: <a href="/interviews/<%= @interview.id %>/edit">Reschedule</a>
+  </div>
+
+  <div>
+  <%= date_and_time(@interview.meeting_time) %>
+  </div>
+
+  <br>
+
+  <div>
+    <% unless @interview.meeting_time.is_a? Time %>
       No meeting time scheduled yet. <a href="/interviews/<%= @interview.id %>/edit">Schedule a time</a>
     <% end %>
-  </p>
-  <p>
+  </div>
+
+  <div>
     Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
-  </p>
-  <p>
+  </div>
+
+  <div>
     Recruiter Name: <%= @interview.recruiter.full_name %>
-  </p>
+  </div>
 </div>

@@ -1,3 +1,7 @@
+<style>
+  div { padding: 5px; }
+</style>
+
 <h1>Interview for <%= @interview.applicant.full_name %></h1>
 
 <div class="interview_info">
@@ -15,19 +19,21 @@
     </div>
   </form>
 
-  <p>
+  <br>
+
+  <div>
     <% unless @interview.meeting_time %>
       No meeting time scheduled yet.
     <% else %>
       Meeting is scheduled.
     <% end %>
-  </p>
+  </div>
 
-  <p>
+  <div>
     Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
-  </p>
+  </div>
 
-  <p>
+  <div>
     Recruiter Name: <%= @interview.recruiter.full_name %>
-  </p>
+  </div>
 </div>
