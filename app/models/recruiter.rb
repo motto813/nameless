@@ -2,6 +2,7 @@ require 'bcrypt'
 
 class Recruiter < ActiveRecord::Base
   has_many :positions
+  has_many :interviews
 
   validates :first_name, presence: true
   validates :last_name, presence: true

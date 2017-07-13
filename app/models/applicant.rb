@@ -3,6 +3,7 @@ require 'bcrypt'
 class Applicant < ActiveRecord::Base
   has_many :resumes
   has_many :applications, { through: :resumes }
+  has_many :interviews
 
   validates :first_name, presence: true
   validates :last_name, presence: true
