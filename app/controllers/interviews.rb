@@ -15,7 +15,8 @@ post '/interviews' do
     @interview.application.interview_id = @interview.id
     redirect "/interviews/#{@interview.id}"
   else
-    erb :"interviews/new"
+    @errors = @interview.errors.full_messages
+    erb :"hiring"
   end
 end
 
