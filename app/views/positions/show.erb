@@ -36,6 +36,10 @@
       <div class="position_apps">
         <p>Applicant ID: <%= application.resume.id %></p>
         <p><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></p>
+
+        <form action="/applications" method="post">
+          <p><input name="commit" type="submit" value="Schedule for interview"></p>
+        </form>
       </div>
     <% end %>
 

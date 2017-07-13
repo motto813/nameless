@@ -33,3 +33,8 @@
   - Perhaps a new interviews table? I think so
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
+
+
+07/13/17
+- Working through adding interviews and company_recruiters tables and features
+  - Option for recruiter to schedule interview when looking at application
