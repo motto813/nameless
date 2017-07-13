@@ -1,25 +1,19 @@
 <div class="links">
-  <p>
-    <a href="/positions">Available Positions</a>
-  </p>
-
-  <% if session[:user].instance_of? Applicant %>
+  <% if session[:user].instance_of?(Applicant) %>
     <p>
       <a href="/applicants/<%= session[:user].id %>">Your Applicant Profile</a>
     </p>
-    <p>
-      <a href="/looking">Looking Home</a>
-    </p>
   <% end %>
 
-  <% if session[:user].instance_of? Recruiter %>
+  <% if session[:user].instance_of?(Recruiter) %>
     <p>
       <a href="/recruiters/<%= session[:user].id %>">Your Recruiter Profile</a>
     </p>
-    <p>
-      <a href="/hiring">Hiring Home</a>
-    </p>
   <% end %>
+
+  <p>
+    <a href="/positions">Positions For Hire</a>
+  </p>
 
   <p>
     <a href="/logout">Landing Page (Logout)</a>

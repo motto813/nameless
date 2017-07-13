@@ -1,5 +1,5 @@
 get '/positions' do
-  @positions = Position.all.order(:id)
+  @positions = Position.joins(:company).merge(Company.order(:name))
 
   erb :"positions/index"
 end
@@ -30,6 +30,8 @@ end
 
 get '/positions/:id' do
   @position = Position.find(params[:id])
+  @applicant_has_applied = @position.is_applied_to_by_applicant?(session[:user])
+  @authorized_recruiter = Recruiter.authorized?(session[:user], @position.recruiter_id)
 
   erb :"positions/show"
 end

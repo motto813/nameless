@@ -6,7 +6,9 @@ class Recruiter < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
+
+  validates :password, presence: true, confirmation: true
+  validates :password_confirmation, presence: true
 
   before_save :encrypt_password
 
@@ -21,5 +23,13 @@ class Recruiter < ActiveRecord::Base
       return recruiter if db_password == password
     end
     return nil
+  end
+
+  def self.authorized?(recruiter, recruiter_id)
+    if recruiter.instance_of?(self)
+      recruiter.id == recruiter_id.to_i
+    else
+      false
+    end
   end
 end

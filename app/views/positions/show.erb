@@ -8,9 +8,9 @@
 <br>
 
 <div id="applicant_position">
-  <% if session[:user].instance_of? Applicant %>
+  <% if @is_applicant %>
 
-      <% if @position.is_applied_to_by_applicant?(session[:user]) %>
+      <% if @applicant_has_applied %>
         <p>You have applied for this position</p>
       <% else %>
         <p><a href="/applications/new?position_id=<%= @position.id %>&applicant_id=<%= session[:user].id %>">Apply for Position</a></p>
@@ -19,28 +19,30 @@
   <% end %>
 </div>
 
-<div id="recruiter_position">
-  <% if @position.was_created_by_recruiter?(session[:user]) %>
+<% if @authorized_recruiter %>
+
+  <div id="recruiter_position">
     <p>
       You listed this position. <a href="/positions/<%= @position.id %>/edit">Edit</a>
       <%= erb :"positions/_delete", layout: false, locals: { position: @position } %>
     </p>
+  </div>
+
+  <h2>Pending Applications</h2>
+
+  <% unless @position.applications.empty? %>
+
+    <% @position.applications.each do |application| %>
+      <div class="position_apps">
+        <p>Applicant ID: <%= application.resume.id %></p>
+        <p><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></p>
+      </div>
+    <% end %>
+
+  <% else %>
+
+    <p>There are no applications for this position.</p>
+
   <% end %>
-</div>
-
-<h2>Pending Applications</h2>
-
-<% unless @position.applications.empty? %>
-
-  <% @position.applications.each do |application| %>
-    <div class="position_apps">
-      <p>Applicant ID: <%= application.resume.id %></p>
-      <p><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></p>
-    </div>
-  <% end %>
-
-<% else %>
-
-  <p>There are no applications for this position.</p>
 
 <% end %>

@@ -72,14 +72,14 @@ end
 
 # APPLICATIONS
 
-number_of_applications_wanted = 4
-new_applications_needed = number_of_applications_wanted - Application.count
+# number_of_applications_wanted = 4
+# new_applications_needed = number_of_applications_wanted - Application.count
 
-new_applications_needed.times do |x|
-  application = Application.new
+# new_applications_needed.times do |x|
+#   application = Application.new
 
-  application.resume_id = x + 1
-  application.position_id = x + 1
+#   application.resume_id = x + 1
+#   application.position_id = x + 1
 
-  application.save!
-end
+#   application.save!
+# end

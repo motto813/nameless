@@ -3,9 +3,9 @@
   div { padding: 5px; }
 </style>
 
-<h1>Nameless Hiring</h1>
+<h1>Hiring</h1>
 
-<% unless session[:user].instance_of? Recruiter %>
+<% unless @is_recruiter %>
 
   <p class="register_prompt">
     New Recruiters: Click here to <a href="/recruiters/new">register.</a>
