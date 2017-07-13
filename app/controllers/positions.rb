@@ -1,5 +1,5 @@
 get '/positions' do
-  @positions = Position.all.order(:id)
+  @positions = Position.joins(:company).merge(Company.order(:name))
 
   erb :"positions/index"
 end

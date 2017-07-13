@@ -12,6 +12,7 @@
   - full_name virtual attributes for applicants and recruiters
   - authorized class methods are class agnostic for users...
   - THere should be NO instance or class methods in a VIEW file
+  - Maybe could have a super class for User and have Applicant and Recruiter inherit from it
 
 
 7/11/17
@@ -32,6 +33,3 @@
   - Perhaps a new interviews table? I think so
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
-- Make an applications show page
-  - Show the same info as currently, make the list only have position company and title
-  - Be able to download resume and delete the application

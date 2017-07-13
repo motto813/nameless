@@ -17,17 +17,30 @@ post '/applications' do
   @application = Application.new(params[:application])
 
   if @application.save
-    redirect "/applicants/#{@application.resume.applicant_id}"
+    redirect "/applicants/#{@application.resume.applicant.id}"
   else
     erb :"applications/new"
   end
 end
 
-# get '/applications/:id' do
-#   @application = Application.find(params[:id])
+get '/applications/:id' do
+  @application = Application.find(params[:id])
+  if Applicant.authorized?(session[:user], @application.resume.applicant.id)
+    @applicant = session[:user]
+    @resume = @application.resume
+    @position = @application.position
 
-#   erb :"applications/show"
-# end
+    erb :"applications/show"
+  else
+    if @is_applicant
+      redirect '/looking'
+    elsif @is_recruiter
+      redirect '/hiring'
+    else
+      redirect '/'
+    end
+  end
+end
 
 # get '/applications/:id/edit' do
 #   @application = Application.find(params[:id])

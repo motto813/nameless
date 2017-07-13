@@ -1,0 +1,17 @@
+<h1>My Application</h1>
+
+<div id="show_application">
+  <h3>For <a href="/positions/<%= @application.position.id %>">
+      <%= @position.title %></a> At <%= @position.company.name %>
+  </h3>
+  <p>
+    Description: <em><%= @position.description %></em>
+  </p>
+  <br>
+  <p>
+    Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @application.resume.file_name %></a>
+  </p>
+  <p>
+    <%= erb :"applications/_delete", layout: false, locals: { application: @application } %>
+  </p>
+</div>
