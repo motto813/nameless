@@ -21,14 +21,21 @@ post '/recruiters' do
 end
 
 get '/recruiters/:id' do
+  @recruiter = Recruiter.find(params[:id])
+
   if Recruiter.authorized?(session[:user], params[:id])
-    @recruiter = Recruiter.find(params[:id])
-    @positions = Position.listed_by_recruiter(params[:id])
+    @authorized_recruiter = true
+
+    @positions = Position.listed_by_recruiter(@recruiter.id)
 
     erb :"recruiters/show"
+
+  elsif @is_applicant && Interview.have_a_common_interview?(session[:user].id, @recruiter.id)
+
+    erb :"recruiters/show"
+
   else
     status 401
-    @recruiter = Recruiter.new
     @errors = @recruiter.errors.full_messages
     @errors << "You can't view that recruiter's profile"
     erb :hiring

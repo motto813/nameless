@@ -15,11 +15,11 @@
     Email: <%= @applicant.email %>
   </div>
   <div>
-    <%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } if @authorized %>
+    <%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } if @authorized_applicant %>
   </div>
 </div>
 
-<% if @authorized %>
+<% if @authorized_applicant %>
 
   <div>
     <a href="/positions">View Positions for Hire</a>

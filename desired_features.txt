@@ -13,6 +13,7 @@
   - Maybe could have a super class for User and have Applicant and Recruiter inherit from it
   - It appears that it's somewhat easy to run out of COOKIE space when using a model object in the SESSIONS object
     - Might want to store a user_id instead, would have other implications though...
+  - Can I condense applications show page into conditional position show page for users?
 
 
 7/11/17
@@ -36,3 +37,5 @@
 
 
 07/13/17
+- Working through being able to view applicant/recruiter profile if have an interview in common
+- Caught a bug earlier.. What was it? Oh, it was trying to schedule an interview as a recruiter, something like the application already exists

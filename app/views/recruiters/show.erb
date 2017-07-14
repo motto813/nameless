@@ -15,28 +15,32 @@
     Email: <%= @recruiter.email %>
   </div>
   <div>
-    <%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } %>
+    <%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } if @authorized_recruiter %>
   </div>
 </div>
 
-<br>
+<% if @authorized_recruiter %>
 
-<div>
-  <a href="/positions/new">List a Position for Hire</a>
-</div>
+  <br>
 
-<h2>My Listed Positions</h2>
+  <div>
+    <a href="/positions/new">List a Position for Hire</a>
+  </div>
 
-<% if @positions.empty? %>
+  <h2>My Listed Positions</h2>
 
-  <div>You don't have any listed positions.</div>
+  <% if @positions.empty? %>
 
-<% else %>
+    <div>You don't have any listed positions.</div>
 
-  <% @positions.each do |position| %>
-    <a href="/positions/<%= position.id %>">
-      <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
-    </a>
+  <% else %>
+
+    <% @positions.each do |position| %>
+      <a href="/positions/<%= position.id %>">
+        <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
+      </a>
+    <% end %>
+
   <% end %>
 
 <% end %>

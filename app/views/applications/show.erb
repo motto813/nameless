@@ -14,15 +14,6 @@
   </div>
 
   <br>
-
-  <div>
-    <% if @application.scheduled_for_interview? %>
-      <a href="/interviews/<%= @application.interview.id %>">Schedule Interview</a>
-    <% else %>
-      Pending recruiter's response.
-    <% end %>
-  </div>
-
   <br>
 
   <div>
@@ -34,11 +25,15 @@
   </div>
 </div>
 
+<div>
+  <h2>Interview</h2>
+</div>
+
 <% if @application.scheduled_for_interview? %>
-  <div>
-    <h2>Interview</h2>
-  </div>
 
   <%= erb :"interviews/_interview_info", layout: false, locals: { interview: @application.interview } %>
+
+  <% else %>
+    <div>Pending recruiter's response.</div>
 <% end %>
 
