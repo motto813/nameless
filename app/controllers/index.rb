@@ -3,10 +3,8 @@ enable :sessions
 before do
   if session[:user].instance_of?(Applicant)
     @is_applicant = true
-    @applicant = Applicant.find(session[:user].id)
   elsif session[:user].instance_of?(Recruiter)
     @is_recruiter = true
-    @recruiter = Applicant.find(session[:user].id)
   end
 end
 

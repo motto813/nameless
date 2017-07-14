@@ -1,8 +1,8 @@
 get '/resumes' do
-  if @authorized_applicant
-    @resumes = Resume.where(applicant_id: params[:applicant_id])
-  else
+  if @authorized_admin
     @resumes = Resume.all
+  elsif @is_applicant
+    @resumes = Resume.where(applicant_id: session[:user].id)
   end
 
   erb :"resumes/index"

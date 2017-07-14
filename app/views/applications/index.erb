@@ -3,21 +3,9 @@
 <div id="application_list">
 
   <% @applications.each do |application| %>
-  <div>
-    <a href="/applications/<%= application.id %>">
-      <%= erb :"positions/_position_info", layout: false, locals: { position: application.position } %>
-    </a>
 
-    <a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a>
+    <%= erb :"applications/_application_full_info", layout: false, locals: { application: application } %>
 
-    <%= erb :"applications/_delete", layout: false, locals: { application: application } %>
-  </div>
-
-  <div>
-    <% if application.scheduled_for_interview? %>
-      Congrats! This application has been selected for interview.
-    <% end %>
-  </div>
   <% end %>
 
 </div>

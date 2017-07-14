@@ -5,9 +5,9 @@ get '/applications' do
   if @authorized_admin
     @applications = Application.all
   elsif @is_applicant
-    @applications = Application.submitted_by_applicant(@applicant)
+    @applications = Application.submitted_by_applicant(session[:user])
   elsif @is_recruiter
-    @applications = Application.submitted_for_position(@recruiter)
+    @applications = Application.submitted_for_position(session[:user])
   end
 
   erb :"applications/index"
@@ -37,10 +37,13 @@ get '/applications/:id' do
 
   if Applicant.authorized?(session[:user], @application.resume.applicant.id)
     @applicant = session[:user]
+    @position = @application.position
+    @resume = @application.resume
 
     if @application.scheduled_for_interview?
       @selected_for_interview = true
       @interview = @application.interview
+      @recruiter = @application.interview.recruiter.full_name
     end
 
     erb :"applications/show"

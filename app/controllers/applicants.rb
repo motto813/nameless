@@ -23,24 +23,43 @@ post '/applicants' do
 end
 
 get '/applicants/:id' do
-  @applicant = Applicant.find(params[:id])
+
+  @applicant = Applicant.select("id", "first_name", "last_name", "email").find(params[:id])
 
   if Applicant.authorized?(session[:user], params[:id])
+
     @authorized_applicant = true
 
-    @applications = Application.submitted_by_applicant(params[:id])
-    @resumes = Resume.where(applicant: @applicant)
+    @applicant = Applicant.select("id", "first_name", "last_name", "email").find(params[:id])
+
+    @applications = Application.joins(position: :company).select("id", "positions.title", "companies.name").submitted_by_applicant(@applicant)
+
+    if @applications.empty?
+      @no_positions_applied = "You haven't applied to any positions."
+    end
+
+    @resumes = Resume.select("id", "file_name", "created_at").where(applicant: @applicant)
+
+    if @resumes.empty?
+      @no_resumes_on_file = "You don't have any resumes on file."
+    end
 
     erb :"applicants/show"
 
   elsif @is_recruiter && Interview.have_a_common_interview?(@applicant.id, session[:user].id)
+
+    @applicant = Applicant.select("first_name", "last_name", "email").find(params[:id])
+
     erb :"applicants/show"
 
   else
+
+    @applicant = Applicant.new
     status 401
     @errors = @applicant.errors.full_messages
     @errors << "You can't view that applicant's profile"
     erb :hiring
+
   end
 end
 

@@ -5,19 +5,19 @@
 <h1><%= @applicant.full_name %></h1>
 
 <div id="show_application">
-  <h3>Application For <a href="/positions/<%= @application.position.id %>">
-      <%= @application.position.title %></a> At <%= @application.position.company.name %>
+  <h3>Application For <a href="/positions/<%= @position.id %>">
+      <%= @position.title %></a> At <%= @position.company.name %>
   </h3>
 
   <div>
-    Description: <em><%= @application.position.description %></em>
+    Description: <em><%= @position.description %></em>
   </div>
 
   <br>
   <br>
 
   <div>
-    Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @application.resume.file_name %></a>
+    Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @resume.file_name %></a>
   </div>
 
   <div>
@@ -44,7 +44,7 @@
   <% end %>
 
   <div>
-    Recruiter Name: <a href="/recruiters/<%= @application.interview.recruiter.id %>"><%= @application.interview.recruiter.full_name %></a>
+    Recruiter Name: <a href="/recruiters/<%= @recruiter_name %>"><%= @recruiter_name %></a>
   </div>
 
 <% else %>
