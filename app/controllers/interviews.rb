@@ -35,8 +35,7 @@ get '/interviews/:id' do
     erb :"interviews/show"
   else
     status 401
-    @applicant = Applicant.new
-    @errors = @applicant.errors.full_messages
+    @errors = @interview.errors.full_messages
     @errors << "You can't view that interview"
     erb :looking
   end
@@ -45,7 +44,19 @@ end
 get '/interviews/:id/edit' do
   @interview = Interview.find(params[:id])
 
-  erb :"interviews/edit"
+  if Applicant.authorized?(session[:user], @interview.applicant_id)
+    erb :"interviews/edit"
+  elsif Recruiter.authorized?(session[:user], @interview.recruiter_id)
+    status 401
+    @errors = @interview.errors.full_messages
+    @errors << "You can't edit an interview as a recruiter"
+    erb :"interviews/#{@interview.id}"
+  else
+    status 401
+    @errors = @interview.errors.full_messages
+    @errors << "You can't view that interview"
+    erb :looking
+  end
 end
 
 put '/interviews/:id' do

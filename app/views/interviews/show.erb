@@ -6,14 +6,24 @@
 <h3>At <%= @interview.application.position.company.name %></h3>
 
 <% if @interview.meeting_time.is_a? Time %>
+
   <%= erb :"interviews/_interview_meeting_time", layout: false, locals: { interview: @interview } %>
-<% else %>
+
+<% elsif @authorized_applicant %>
+
   <div>
     <a href="/interviews/<%= @interview.id %>/edit">Schedule a meeting</a>
   </div>
-<% end %>
 
-<%= erb :"interviews/_interview_schedule_form", layout: false, locals: { interview: @interview } %>
+<% elsif @authorized_recruiter %>
+
+  <div>
+    Waiting for <%= @interview.applicant.first_name %> to schedule the interview.
+  </div>
+
+  <br>
+
+<% end %>
 
 <div>
   Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>

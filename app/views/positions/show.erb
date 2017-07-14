@@ -55,7 +55,15 @@
         <% else %>
 
           <div>
-            <a href="/interviews/<%= application.interview.id %>">Selected for interview</a>
+            <a href="/interviews/<%= application.interview.id %>">
+
+              <% unless application.interview.meeting_time.nil? %>
+                Applicant has Scheduled the Interview
+              <% else %>
+                Applicant is Selected for Interview
+              <% end %>
+
+            </a>
           </div>
 
         <% end %>

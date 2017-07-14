@@ -6,35 +6,23 @@
 <h3>At <%= @interview.application.position.company.name %></h3>
 
 <div class="interview_info">
-  <form action="/interviews/<%= @interview.id %>" method="post">
-    <input type="hidden" name="_method" value="put">
-
-    <div>
-      <label for="interview_meeting_time">Schedule a meeting time:</label>
-      <br>
-      <input id="interview_meeting_time" type="datetime-local" name="interview[meeting_time]" value="<%= meeting_time_value_format(@interview.meeting_time) %>">
-    </div>
-
-    <div>
-      <input name="commit" type="submit" value="Update Meeting Time">
-    </div>
-  </form>
-
-  <br>
+  <%= erb :"interviews/_interview_schedule_form", layout: false, locals: { interview: @interview } %>
 
   <div>
     <% unless @interview.meeting_time %>
-      No meeting time scheduled yet.
+      Meeting isn't scheduled yet.
     <% else %>
       Meeting is scheduled.
     <% end %>
   </div>
+
+  <br>
 
   <div>
     Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
   </div>
 
   <div>
-    Recruiter Name: <%= @interview.recruiter.full_name %>
+    Recruiter Name: <a href="/recruiters/<%= @interview.recruiter.id %>"><%= @interview.recruiter.full_name %></a>
   </div>
 </div>
