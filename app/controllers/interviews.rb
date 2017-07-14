@@ -13,6 +13,8 @@ post '/interviews' do
 
   if @interview.save
     @interview.application.interview_id = @interview.id
+    @interview.application.save
+
     redirect "/interviews/#{@interview.id}"
   else
     @errors = @interview.errors.full_messages
@@ -23,7 +25,21 @@ end
 get '/interviews/:id' do
   @interview = Interview.find(params[:id])
 
-  erb :"interviews/show"
+  if Applicant.authorized?(session[:user], @interview.applicant_id)
+    @authorized_applicant = true
+
+    erb :"interviews/show"
+  elsif Recruiter.authorized?(session[:user], @interview.recruiter_id)
+    @authorized_recruiter = true
+
+    erb :"interviews/show"
+  else
+    status 401
+    @applicant = Applicant.new
+    @errors = @applicant.errors.full_messages
+    @errors << "You can't view that interview"
+    erb :looking
+  end
 end
 
 get '/interviews/:id/edit' do

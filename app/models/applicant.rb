@@ -28,7 +28,7 @@ class Applicant < ActiveRecord::Base
   end
 
   def self.authorized?(applicant, applicant_id)
-    if applicant.instance_of?(self)
+    if applicant.instance_of?(Applicant)
       applicant.id == applicant_id.to_i
     else
       false

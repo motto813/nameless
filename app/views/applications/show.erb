@@ -29,11 +29,26 @@
   <h2>Interview</h2>
 </div>
 
-<% if @application.scheduled_for_interview? %>
+<% if @selected_for_interview %>
 
-  <%= erb :"interviews/_interview_info", layout: false, locals: { interview: @application.interview } %>
+  <% if @interview.meeting_time.is_a? Time %>
+
+    <%= erb :"interviews/_interview_meeting_time", layout: false, locals: { interview: @interview } %>
 
   <% else %>
-    <div>Pending recruiter's response.</div>
-<% end %>
 
+    <div>
+      <a href="/interviews/<%= @interview.id %>/edit">Schedule a meeting</a>
+    </div>
+
+  <% end %>
+
+  <div>
+    Recruiter Name: <a href="/recruiters/<%= @application.interview.recruiter.id %>"><%= @application.interview.recruiter.full_name %></a>
+  </div>
+
+<% else %>
+
+    <div>Pending recruiter's response.</div>
+
+<% end %>

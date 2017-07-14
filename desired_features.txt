@@ -39,3 +39,4 @@
 07/13/17
 - Working through being able to view applicant/recruiter profile if have an interview in common
 - Caught a bug earlier.. What was it? Oh, it was trying to schedule an interview as a recruiter, something like the application already exists
+  - It might be a bad idea to check if application.interview.nil? in positions SHOW page because there might already be an interview with that application_id

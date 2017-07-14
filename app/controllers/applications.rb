@@ -25,8 +25,14 @@ end
 
 get '/applications/:id' do
   @application = Application.find(params[:id])
+
   if Applicant.authorized?(session[:user], @application.resume.applicant.id)
     @applicant = session[:user]
+
+    if @application.scheduled_for_interview?
+      @selected_for_interview = true
+      @interview = @application.interview
+    end
 
     erb :"applications/show"
   else

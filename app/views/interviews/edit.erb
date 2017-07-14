@@ -2,7 +2,8 @@
   div { padding: 5px; }
 </style>
 
-<h1>Interview for <%= @interview.applicant.full_name %></h1>
+<h1>Interview for <%= @interview.application.position.title %></h1>
+<h3>At <%= @interview.application.position.company.name %></h3>
 
 <div class="interview_info">
   <form action="/interviews/<%= @interview.id %>" method="post">
