@@ -27,7 +27,7 @@ class Recruiter < ActiveRecord::Base
   end
 
   def self.authorized?(recruiter, recruiter_id)
-    if recruiter.instance_of?(Recruiter)
+    if recruiter.instance_of?(self)
       recruiter.id == recruiter_id.to_i
     else
       false

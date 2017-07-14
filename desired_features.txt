@@ -14,6 +14,7 @@
   - It appears that it's somewhat easy to run out of COOKIE space when using a model object in the SESSIONS object
     - Might want to store a user_id instead, would have other implications though...
   - Can I condense applications show page into conditional position show page for users?
+    - Should I only send instance objects into view which are already authorized? I think so
 
 
 7/11/17
