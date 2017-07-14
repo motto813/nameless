@@ -1,5 +1,14 @@
+# before '/applications' do
+#   if @is_applicant
+
 get '/applications' do
-  @applications = Application.all
+  if @authorized_admin
+    @applications = Application.all
+  elsif @is_applicant
+    @applications = Application.submitted_by_applicant(@applicant)
+  elsif @is_recruiter
+    @applications = Application.submitted_for_position(@recruiter)
+  end
 
   erb :"applications/index"
 end

@@ -1,18 +1,25 @@
 <h3>List of current applications</h3>
 
 <div id="application_list">
-  <% @applications.each do |application| %>
-  <ul>
-    <li>Applicant ID: <%= application.resume.applicant_id %></li>
-    <li>Position Company: <%= application.position.company.name %></li>
-    <li>Position Title: <%= application.position.title %></li>
-    <li><a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a></li>
 
-    <% if application.is_created_by_applicant?(session[:user]) %>
-      <li>This is your application.</li>
-      <li>Submitted resume: <%= application.resume.file_name %></li>
-      <li><%= erb :"applications/_delete", layout: false, locals: { application: application } %></li>
+  <% @applications.each do |application| %>
+  <div>
+    <a href="/applications/<%= application.id %>">
+      <%= erb :"positions/_position_info", layout: false, locals: { position: application.position } %>
+    </a>
+
+    <a href="/resumes/download/<%= application.resume.file_name %>">Download Resume</a>
+
+    <%= erb :"applications/_delete", layout: false, locals: { application: application } %>
+  </div>
+
+  <div>
+    <% if application.scheduled_for_interview? %>
+      Congrats! This application has been selected for interview.
     <% end %>
-  </ul>
+  </div>
   <% end %>
+
 </div>
+
+

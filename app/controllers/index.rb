@@ -1,8 +1,13 @@
 enable :sessions
 
 before do
-  @is_applicant = session[:user].instance_of?(Applicant)
-  @is_recruiter = session[:user].instance_of?(Recruiter)
+  if session[:user].instance_of?(Applicant)
+    @is_applicant = true
+    @applicant = Applicant.find(session[:user].id)
+  elsif session[:user].instance_of?(Recruiter)
+    @is_recruiter = true
+    @recruiter = Applicant.find(session[:user].id)
+  end
 end
 
 get '/' do
