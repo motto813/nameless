@@ -1,0 +1,34 @@
+<style>
+  div { padding: 5px; }
+</style>
+
+<h1>Interview for <%= @interview.application.position.title %></h1>
+<h3>At <%= @interview.application.position.company.name %></h3>
+
+<% if @interview.meeting_time.is_a? Time %>
+
+  <%= erb :"interviews/_interview_meeting_time", layout: false, locals: { interview: @interview } %>
+
+<% elsif @authorized_applicant %>
+
+  <div>
+    <a href="/interviews/<%= @interview.id %>/edit">Schedule a meeting</a>
+  </div>
+
+<% elsif @authorized_recruiter %>
+
+  <div>
+    Waiting for <%= @interview.applicant.first_name %> to schedule the interview.
+  </div>
+
+  <br>
+
+<% end %>
+
+<div>
+  Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
+</div>
+
+<div>
+  Recruiter Name: <a href="/recruiters/<%= @interview.recruiter.id %>"><%= @interview.recruiter.full_name %></a>
+</div>

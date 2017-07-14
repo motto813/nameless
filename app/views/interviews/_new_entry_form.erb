@@ -1,0 +1,6 @@
+<form action="/interviews" method="post">
+  <input id="interview_application" name="interview[application_id]" type="hidden" value="<%= application.id %>">
+  <input id="interview_applicant" name="interview[applicant_id]" type="hidden" value="<%= application.resume.applicant.id %>">
+  <input id="interview_recruiter" name="interview[recruiter_id]" type="hidden" value="<%= application.position.recruiter.id %>">
+  <p><input name="commit" type="submit" value="Schedule for interview"></p>
+</form>

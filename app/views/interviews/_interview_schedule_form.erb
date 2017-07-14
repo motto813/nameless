@@ -1,0 +1,13 @@
+<form action="/interviews/<%= interview.id %>" method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <div>
+    <label for="interview_meeting_time">Schedule a meeting time:</label>
+    <br>
+    <input id="interview_meeting_time" type="datetime-local" name="interview[meeting_time]" value="<%= meeting_time_value_format(interview.meeting_time) %>">
+  </div>
+
+  <div>
+    <input name="commit" type="submit" value="Schedule Meeting">
+  </div>
+</form>

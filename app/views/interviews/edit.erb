@@ -1,0 +1,28 @@
+<style>
+  div { padding: 5px; }
+</style>
+
+<h1>Interview for <%= @interview.application.position.title %></h1>
+<h3>At <%= @interview.application.position.company.name %></h3>
+
+<div class="interview_info">
+  <%= erb :"interviews/_interview_schedule_form", layout: false, locals: { interview: @interview } %>
+
+  <div>
+    <% unless @interview.meeting_time %>
+      Meeting isn't scheduled yet.
+    <% else %>
+      Meeting is scheduled.
+    <% end %>
+  </div>
+
+  <br>
+
+  <div>
+    Applicant Name: <a href="/applicants/<%= @interview.applicant.id %>"><%= @interview.applicant.full_name %></a>
+  </div>
+
+  <div>
+    Recruiter Name: <a href="/recruiters/<%= @interview.recruiter.id %>"><%= @interview.recruiter.full_name %></a>
+  </div>
+</div>

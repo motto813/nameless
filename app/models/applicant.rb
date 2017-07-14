@@ -3,6 +3,7 @@ require 'bcrypt'
 class Applicant < ActiveRecord::Base
   has_many :resumes
   has_many :applications, { through: :resumes }
+  has_many :interviews
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -27,10 +28,14 @@ class Applicant < ActiveRecord::Base
   end
 
   def self.authorized?(applicant, applicant_id)
-    if applicant.instance_of?(self)
+    if applicant.instance_of?(Applicant)
       applicant.id == applicant_id.to_i
     else
       false
     end
+  end
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
   end
 end

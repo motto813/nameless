@@ -1,0 +1,25 @@
+<div id="interview_meeting_time">
+  <% if interview.meeting_time.is_a? Time %>
+
+    <div>
+      Scheduled Time:
+      <% if @authorized_applicant %>
+        <a href="/interviews/<%= interview.id %>/edit">Reschedule</a>
+      <% end %>
+    </div>
+
+    <div>
+      <%= date_and_time(interview.meeting_time) %>
+    </div>
+
+    <br>
+
+  <% else %>
+
+    <div>
+      Waiting for <%= interview.applicant.first_name %> to schedule a time.
+    </div>
+
+  <% end %>
+
+</div>

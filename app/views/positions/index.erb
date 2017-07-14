@@ -1,3 +1,7 @@
+<style>
+  div { padding: 5px; }
+</style>
+
 <h1>Positions for Hire</h1>
 
 <% if @is_recruiter %>
@@ -5,6 +9,8 @@
     <a href="/positions/new">List a new position</a>
   </div>
 <% end %>
+
+<br>
 
 <% @positions.each do |position| %>
   <a href="/positions/<%= position.id %>">

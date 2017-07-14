@@ -23,15 +23,21 @@ post '/applicants' do
 end
 
 get '/applicants/:id' do
+  @applicant = Applicant.find(params[:id])
+
   if Applicant.authorized?(session[:user], params[:id])
-    @applicant = Applicant.find(params[:id])
+    @authorized_applicant = true
+
     @applications = Application.submitted_by_applicant(params[:id])
     @resumes = Resume.where(applicant: @applicant)
 
     erb :"applicants/show"
+
+  elsif @is_recruiter && Interview.have_a_common_interview?(@applicant.id, session[:user].id)
+    erb :"applicants/show"
+
   else
     status 401
-    @applicant = Applicant.new
     @errors = @applicant.errors.full_messages
     @errors << "You can't view that applicant's profile"
     erb :hiring

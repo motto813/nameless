@@ -9,10 +9,11 @@
 
 
 - REFACTOR Stuff
-  - full_name virtual attributes for applicants and recruiters
   - authorized class methods are class agnostic for users...
-  - THere should be NO instance or class methods in a VIEW file
   - Maybe could have a super class for User and have Applicant and Recruiter inherit from it
+  - It appears that it's somewhat easy to run out of COOKIE space when using a model object in the SESSIONS object
+    - Might want to store a user_id instead, would have other implications though...
+  - Can I condense applications show page into conditional position show page for users?
 
 
 7/11/17
@@ -33,3 +34,9 @@
   - Perhaps a new interviews table? I think so
       - Join between applications, applicants, and recruiters?
   - IF application is scheduled for interview, recruiter can view applicant profile
+
+
+07/13/17
+- Working through being able to view applicant/recruiter profile if have an interview in common
+- Caught a bug earlier.. What was it? Oh, it was trying to schedule an interview as a recruiter, something like the application already exists
+  - It might be a bad idea to check if application.interview.nil? in positions SHOW page because there might already be an interview with that application_id

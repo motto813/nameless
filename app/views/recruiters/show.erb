@@ -1,32 +1,46 @@
+<style>
+  div { padding: 5px; }
+</style>
+
 <h1><%= "#{@recruiter.first_name} #{@recruiter.last_name}" %></h1>
 
 <div class="profile">
-  <ul>
-    <li>Recruiter ID: <%= @recruiter.id %></li>
-    <li>Name: <%= "#{@recruiter.first_name} #{@recruiter.last_name}" %></li>
-    <li>Email: <%= @recruiter.email %></li>
-    <li><%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } %></li>
-  </ul>
+  <div>
+    Recruiter ID: <%= @recruiter.id %>
+  </div>
+  <div>
+    Name: <%= "#{@recruiter.first_name} #{@recruiter.last_name}" %>
+  </div>
+  <div>
+    Email: <%= @recruiter.email %>
+  </div>
+  <div>
+    <%= erb :"recruiters/_delete", layout: false, locals: { recruiter: @recruiter } if @authorized_recruiter %>
+  </div>
 </div>
 
-<br>
+<% if @authorized_recruiter %>
 
-<p>
-  <a href="/positions/new">List a Position for Hire</a>
-</p>
+  <br>
 
-<h2>My Listed Positions</h2>
+  <div>
+    <a href="/positions/new">List a Position for Hire</a>
+  </div>
 
-<% if @positions.empty? %>
+  <h2>My Listed Positions</h2>
 
-  <p>You don't have any listed positions.</p>
+  <% if @positions.empty? %>
 
-<% else %>
+    <div>You don't have any listed positions.</div>
 
-  <% @positions.each do |position| %>
-    <a href="/positions/<%= position.id %>">
-      <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
-    </a>
+  <% else %>
+
+    <% @positions.each do |position| %>
+      <a href="/positions/<%= position.id %>">
+        <%= erb :"positions/_position_info", layout: false, locals: { position: position } %>
+      </a>
+    <% end %>
+
   <% end %>
 
 <% end %>
