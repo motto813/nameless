@@ -25,15 +25,13 @@ get '/recruiters/:id' do
 
   if Recruiter.authorized?(session[:user], params[:id])
     @authorized_recruiter = true
-
+    @recruiter = Recruiter.find(params[:id])
     @positions = Position.listed_by_recruiter(@recruiter.id)
 
     erb :"recruiters/show"
-
   elsif @is_applicant && Interview.have_a_common_interview?(session[:user].id, @recruiter.id)
 
     erb :"recruiters/show"
-
   else
     status 401
     @errors = @recruiter.errors.full_messages
@@ -51,7 +49,6 @@ end
 
 put '/recruiters/:id' do
   @recruiter = Recruiter.find(params[:id])
-
   @recruiter.assign_attributes(params[:recruiter])
 
   if @recruiter.save
@@ -64,7 +61,6 @@ end
 
 delete '/recruiters/:id' do
   @recruiter = Recruiter.find(params[:id])
-
   @recruiter.destroy
 
   redirect '/recruiters'

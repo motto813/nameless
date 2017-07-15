@@ -25,7 +25,6 @@
 </div>
 
 <% if @authorized_applicant %>
-
   <div>
     <a href="/positions">View Positions for Hire</a>
   </div>
@@ -33,17 +32,16 @@
   <h2>Submitted <a href="/applications">Applications</a></h2>
 
   <% @applications.each do |application| %>
-
     <div>
-      <a href="/applications/<%= application.id %>"><%= application.title %> <b>@</b> <%= application.name %></a>
+      <a href="/applications/<%= application.id %>">
+        <%= application.position.title %> <b>@</b> <%= application.position.company.name %>
+      </a>
     </div>
-
     <br>
-
   <% end %>
 
   <div>
-    <%= @no_positions_applied %>
+    <%= "You haven't applied to any positions" if @applications.empty? %>
   </div>
 
   <h2>My <a href="/resumes">Resumes</a></h2>
@@ -51,13 +49,13 @@
   <div class="links">
     <a href="/resumes/new">Upload a Resume</a>
   </div>
-
   <br>
 
-  <% @applicant.resumes.each do |resume| %>
+  <% @resumes.each do |resume| %>
 
     <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
 
   <% end %>
 
+  <%= "You don't have any resumes on file" if @resumes.empty? %>
 <% end %>

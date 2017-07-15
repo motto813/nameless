@@ -5,8 +5,8 @@
 <h1><%= @applicant.full_name %></h1>
 
 <div id="show_application">
-  <h3>Application For <a href="/positions/<%= @position.id %>">
-      <%= @position.title %></a> At <%= @position.company.name %>
+  <h3>
+    Application For <a href="/positions/<%= @position.id %>"><%= @position.title %></a> At <%= @position.company.name %>
   </h3>
 
   <div>
@@ -44,7 +44,7 @@
   <% end %>
 
   <div>
-    Recruiter Name: <a href="/recruiters/<%= @recruiter_name %>"><%= @recruiter_name %></a>
+    Recruiter Name: <a href="/recruiters/<%= @recruiter.id %>"><%= @recruiter.full_name %></a>
   </div>
 
 <% else %>

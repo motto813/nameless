@@ -7,4 +7,8 @@ class Resume < ActiveRecord::Base
   validates :applicant_id, presence: true
 
   mount_uploader :resume_file, ResumeUploader
+
+  def self.uploaded_by_applicant(applicant)
+    self.where(applicant: applicant)
+  end
 end

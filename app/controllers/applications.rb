@@ -2,12 +2,13 @@
 #   if @is_applicant
 
 get '/applications' do
+
+  @applications = []
+
   if @authorized_admin
     @applications = Application.all
   elsif @is_applicant
     @applications = Application.submitted_by_applicant(session[:user])
-  elsif @is_recruiter
-    @applications = Application.submitted_for_position(session[:user])
   end
 
   erb :"applications/index"
@@ -43,7 +44,7 @@ get '/applications/:id' do
     if @application.scheduled_for_interview?
       @selected_for_interview = true
       @interview = @application.interview
-      @recruiter = @application.interview.recruiter.full_name
+      @recruiter = @application.interview.recruiter
     end
 
     erb :"applications/show"
