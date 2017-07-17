@@ -38,13 +38,10 @@ get '/applicants/:id' do
     erb :"applicants/show"
 
   else
-
-    @applicant = Applicant.new
     status 401
     @errors = @applicant.errors.full_messages
     @errors << "You can't view that applicant's profile"
     erb :hiring
-
   end
 end
 
