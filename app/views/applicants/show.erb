@@ -45,6 +45,7 @@
 
   <% @resumes.each do |resume| %>
     <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
+    <br>
   <% end %>
 
   <%= "You don't have any resumes on file" if @resumes.empty? %>

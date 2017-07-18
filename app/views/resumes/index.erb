@@ -1,13 +1,13 @@
 <h1>My Resumes</h1>
 
 <% @resumes.each do |resume| %>
-
   <div>
-    <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
+    Resume ID: <%= resume.id %>
   </div>
+  <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
 
   <div>
     <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
   </div>
-
+  <br>
 <% end %>

@@ -53,27 +53,19 @@
         </div>
 
         <% if Interview.find_by(application: application).nil? %>
-
           <%= erb :"interviews/_new_entry_form", layout: false, locals: { application: application } %>
-
         <% else %>
 
           <div>
             <a href="/interviews/<%= application.interview.id %>">
-
               <% unless application.interview.meeting_time.nil? %>
-
                 Applicant has Scheduled the Interview
-
               <% else %>
-
                 Applicant is Selected for Interview
-
               <% end %>
-
             </a>
           </div>
-
+          <br>
         <% end %>
       </div>
     <% end %>
