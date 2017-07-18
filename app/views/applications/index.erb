@@ -1,13 +1,10 @@
 <h1>My Applications</h1>
 
 <div id="application_list">
-
   <% @applications.each do |application| %>
-
-    <%= erb :"applications/_application_full_info", layout: false, locals: { application: application } %>
-
+    <%= erb :"applications/_basic_info", layout: false, locals: { application: application } %>
+    <br>
   <% end %>
-
 </div>
 
 

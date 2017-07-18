@@ -1,11 +1,6 @@
-<style>
-  div { padding: 5px; }
-</style>
-
 <h1><%= @applicant.full_name %></h1>
 
 <div class="profile">
-
   <div>
     Applicant ID: <%= @applicant.id %>
   </div>
@@ -21,8 +16,9 @@
   <div>
     <%= erb :"applicants/_delete", layout: false, locals: { applicant: @applicant } if @authorized_applicant %>
   </div>
-
 </div>
+
+<br>
 
 <% if @authorized_applicant %>
   <div>
@@ -32,11 +28,7 @@
   <h2>Submitted <a href="/applications">Applications</a></h2>
 
   <% @applications.each do |application| %>
-    <div>
-      <a href="/applications/<%= application.id %>">
-        <%= application.position.title %> <b>@</b> <%= application.position.company.name %>
-      </a>
-    </div>
+    <%= erb :"applications/_basic_info", layout: false, locals: { application: application } %>
     <br>
   <% end %>
 
@@ -52,9 +44,7 @@
   <br>
 
   <% @resumes.each do |resume| %>
-
     <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
-
   <% end %>
 
   <%= "You don't have any resumes on file" if @resumes.empty? %>

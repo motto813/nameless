@@ -1,7 +1,3 @@
-<style>
-  div { padding: 5px; }
-</style>
-
 <h1><%= @applicant.full_name %></h1>
 
 <div id="show_application">
@@ -30,17 +26,12 @@
 </div>
 
 <% if @selected_for_interview %>
-
   <% if @interview.meeting_time.is_a? Time %>
-
     <%= erb :"interviews/_interview_meeting_time", layout: false, locals: { interview: @interview } %>
-
   <% else %>
-
     <div>
       <a href="/interviews/<%= @interview.id %>/edit">Schedule a meeting</a>
     </div>
-
   <% end %>
 
   <div>
@@ -48,7 +39,5 @@
   </div>
 
 <% else %>
-
     <div>Pending recruiter's response.</div>
-
 <% end %>
