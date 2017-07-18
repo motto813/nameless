@@ -48,3 +48,15 @@ GENERAL Thoughts
 - Working through being able to view applicant/recruiter profile if have an interview in common
 - Caught a bug earlier.. What was it? Oh, it was trying to schedule an interview as a recruiter, something like the application already exists
   - It might be a bad idea to check if application.interview.nil? in positions SHOW page because there might already be an interview with that application_id
+
+
+7/18/17
+* New resume crashes app if no resume is chosen
+
+- Notes from Avner:
+  - Use associations instead of model methods whenever possible (way too many model methods)
+  - login and logout routes aren't RESTful
+  - Save hashed_password to database and have actual password as virtual attribute
+  - Have authorized? method as a helper method
+  - Don't have any .where methods or similar in VIEWS
+  - It's OK to have simple conditional statements in VIEWS (such as if @authorized_applicant)
