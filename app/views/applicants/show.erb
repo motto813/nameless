@@ -25,7 +25,7 @@
     <a href="/positions">View Positions for Hire</a>
   </div>
 
-  <h2>Submitted <a href="/applications">Applications</a></h2>
+  <h3>Submitted <a href="/applications">Applications</a></h3>
 
   <% @applications.each do |application| %>
     <%= erb :"applications/_basic_info", layout: false, locals: { application: application } %>
@@ -36,7 +36,7 @@
     <%= "You haven't applied to any positions" if @applications.empty? %>
   </div>
 
-  <h2>My <a href="/resumes">Resumes</a></h2>
+  <h3>My <a href="/resumes">Resumes</a></h3>
 
   <div class="links">
     <a href="/resumes/new">Upload a Resume</a>

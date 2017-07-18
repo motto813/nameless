@@ -5,6 +5,8 @@ get '/recruiters' do
 end
 
 get '/recruiters/new' do
+  @recruiter = Recruiter.new
+
   erb :"recruiters/new"
 end
 
