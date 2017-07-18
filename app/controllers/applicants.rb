@@ -23,17 +23,18 @@ post '/applicants' do
 end
 
 get '/applicants/:id' do
-  @applicant = Applicant.find(params[:id])
+  @applicant = Applicant.select("id", "first_name", "last_name", "email").find(params[:id])
 
   if Applicant.authorized?(session[:user], params[:id])
     @authorized_applicant = true
-
-    @applications = Application.submitted_by_applicant(params[:id])
-    @resumes = Resume.where(applicant: @applicant)
+    @applicant = Applicant.find(params[:id])
+    @applications = Application.submitted_by_applicant(@applicant)
+    @resumes = Resume.uploaded_by_applicant(@applicant)
 
     erb :"applicants/show"
-
   elsif @is_recruiter && Interview.have_a_common_interview?(@applicant.id, session[:user].id)
+    @applicant = Applicant.select("first_name", "last_name", "email").find(params[:id])
+
     erb :"applicants/show"
 
   else

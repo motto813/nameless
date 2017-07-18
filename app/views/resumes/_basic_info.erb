@@ -1,0 +1,9 @@
+<div class="resume_info">
+  <div>
+    Uploaded on: <%= resume.created_at.to_date %>
+  </div>
+
+  <div>
+    File: <a href="/resumes/download/<%= resume.file_name %>"><%= resume.file_name %></a>
+  </div>
+</div>

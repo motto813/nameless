@@ -1,12 +1,13 @@
-<h3>List of current resumes</h3>
+<h1>My Resumes</h1>
 
-<div id="resume_list">
-  <% @resumes.each do |resume| %>
-    <ul>
-      <li>ID: <%= resume.id %></li>
-      <li>File Name: <%= resume.file_name %></li>
-      <li>Applicant Name: <%= "#{resume.applicant.first_name} #{resume.applicant.last_name}" %></li>
-      <li><%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %></li>
-    </ul>
-  <% end %>
-</div>
+<% @resumes.each do |resume| %>
+  <div>
+    Resume ID: <%= resume.id %>
+  </div>
+  <%= erb :"resumes/_basic_info", layout: false, locals: { resume: resume } %>
+
+  <div>
+    <%= erb :"resumes/_delete", layout: false, locals: { resume: resume } %>
+  </div>
+  <br>
+<% end %>

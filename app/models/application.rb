@@ -11,12 +11,12 @@ class Application < ActiveRecord::Base
     self.resume.applicant == applicant
   end
 
-  def self.submitted_by_applicant(applicant_id)
-    self.where(resume: Resume.where(applicant_id: applicant_id))
+  def self.submitted_by_applicant(applicant)
+    self.where(resume: Resume.where(applicant: applicant))
   end
 
-  def self.submitted_for_position(position_id)
-    self.where(position_id: position_id)
+  def self.submitted_for_position(position)
+    self.where(position: position)
   end
 
   def scheduled_for_interview?

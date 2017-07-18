@@ -1,23 +1,19 @@
-<style>
-  div { padding: 5px; }
-</style>
-
 <h1><%= @applicant.full_name %></h1>
 
 <div id="show_application">
-  <h3>Application For <a href="/positions/<%= @application.position.id %>">
-      <%= @application.position.title %></a> At <%= @application.position.company.name %>
+  <h3>
+    Application For <a href="/positions/<%= @position.id %>"><%= @position.title %></a> At <%= @position.company.name %>
   </h3>
 
   <div>
-    Description: <em><%= @application.position.description %></em>
+    Description: <em><%= @position.description %></em>
   </div>
 
   <br>
   <br>
 
   <div>
-    Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @application.resume.file_name %></a>
+    Resume: <a href="/resumes/download/<%= @application.resume.file_name %>"><%= @resume.file_name %></a>
   </div>
 
   <div>
@@ -30,25 +26,18 @@
 </div>
 
 <% if @selected_for_interview %>
-
   <% if @interview.meeting_time.is_a? Time %>
-
     <%= erb :"interviews/_interview_meeting_time", layout: false, locals: { interview: @interview } %>
-
   <% else %>
-
     <div>
       <a href="/interviews/<%= @interview.id %>/edit">Schedule a meeting</a>
     </div>
-
   <% end %>
 
   <div>
-    Recruiter Name: <a href="/recruiters/<%= @application.interview.recruiter.id %>"><%= @application.interview.recruiter.full_name %></a>
+    Recruiter Name: <a href="/recruiters/<%= @recruiter.id %>"><%= @recruiter.full_name %></a>
   </div>
 
 <% else %>
-
     <div>Pending recruiter's response.</div>
-
 <% end %>

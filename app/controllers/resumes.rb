@@ -1,16 +1,16 @@
 get '/resumes' do
-  if @authorized_applicant
-    @resumes = Resume.where(applicant_id: params[:applicant_id])
-  else
+  if @authorized_admin
     @resumes = Resume.all
+  elsif @is_applicant
+    @resumes = Resume.where(applicant_id: session[:user].id)
+  else
+    @resumes = []
   end
 
   erb :"resumes/index"
 end
 
 get '/resumes/new' do
-  @companies = Company.all
-  @recruiters = Recruiter.all
 
   if @is_applicant
     @applicant = session[:user]
@@ -29,11 +29,8 @@ post '/resumes' do
   if @resume.save
     redirect "/applicants/#{@resume.applicant.id}"
   else
-    @companies = Company.all
-    @recruiters = Recruiter.all
-    @applicant = session[:user]
-
     @errors = @resume.errors.full_messages
+
     erb :"resumes/new"
   end
 end

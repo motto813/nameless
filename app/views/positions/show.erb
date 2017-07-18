@@ -1,12 +1,13 @@
-<style>
-  div { padding: 5px; }
-</style>
-
 <h1><%= @position.title %></h1>
 
 <div id="position_list">
-  <h3>Company: <%= @position.company.name %></h3>
-  <p>Description: <em><%= @position.description %></em></p>
+  <h3>
+    Company: <%= @position.company.name %>
+  </h3>
+
+  <p>
+    Description: <em><%= @position.description %></em>
+  </p>
 </div>
 
 <br>
@@ -16,7 +17,9 @@
   <div id="applicant_position">
 
     <% if @applicant_has_applied %>
-      <p>You have applied for this position</p>
+      <div>
+        You have applied for this position
+      </div>
     <% else %>
       <%= erb :"applications/_new", layout: false, locals: { position: @position, applicant: Applicant.find(@applicant_id) } %>
     <% end %>
@@ -29,6 +32,7 @@
   <div id="recruiter_position">
     <p>
       You listed this position. <a href="/positions/<%= @position.id %>/edit">Edit</a>
+
       <%= erb :"positions/_delete", layout: false, locals: { position: @position } %>
     </p>
   </div>
@@ -49,23 +53,19 @@
         </div>
 
         <% if Interview.find_by(application: application).nil? %>
-
           <%= erb :"interviews/_new_entry_form", layout: false, locals: { application: application } %>
-
         <% else %>
 
           <div>
             <a href="/interviews/<%= application.interview.id %>">
-
               <% unless application.interview.meeting_time.nil? %>
                 Applicant has Scheduled the Interview
               <% else %>
                 Applicant is Selected for Interview
               <% end %>
-
             </a>
           </div>
-
+          <br>
         <% end %>
       </div>
     <% end %>
