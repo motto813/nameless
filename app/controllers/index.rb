@@ -9,7 +9,7 @@ before do
 end
 
 get '/' do
-  erb :index, layout: false
+  erb :index
 end
 
 get '/looking' do
@@ -62,5 +62,5 @@ get '/logout' do
   session.delete(:user)
   session.delete(:message)
 
-  erb :index, layout: false
+  erb :index
 end

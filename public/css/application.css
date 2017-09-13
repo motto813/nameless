@@ -1,8 +1,13 @@
 body {
-  width: 600px;
+  /*max-width: 600px;*/
+}
+
+div.container {
+  max-width: 600px;
   margin: 0 auto;
+  width: 90%;
 }
 
 div {
-  padding: 5px;
+  padding-bottom: 10px;
 }

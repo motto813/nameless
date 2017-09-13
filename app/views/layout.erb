@@ -18,20 +18,22 @@
   <title>Nameless</title>
 </head>
 <body>
+  <div class="container">
 
-  <% if @errors %>
-    <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  <% end %>
+    <% if @errors %>
+      <ul>
+        <% @errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-  <%= yield %>
+    <%= yield %>
 
-  <br>
+    <br>
 
-  <%= erb :_login_status %>
-  <%= erb :_nav_links %>
+    <%= erb :_login_status %>
+    <%= erb :_nav_links %>
+  </div>
 </body>
 </html>
